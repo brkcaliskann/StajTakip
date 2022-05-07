@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Staj1.Models.StajyerOgrenciBaslatma>
+
+@{
+    ViewBag.Title = "StajBaslangicFormum";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<script>
+    function StajBaslangicFormunuSil(id) {
+
+        if (confirm('Başvuru Formu Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Kullanici/StajBaslangicFormunuSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Başvuru Formu Başarıyla Silidi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<p style="font-weight: bold;text-align:center;color:red ; font-size:19px">@ViewBag.Mesaj</p>
+
+<p style="font-weight: bold;text-align: center; color: green; font-size: 19px">@ViewBag.Mesaj1</p>
+
+@foreach (var item in Model)
+{
+    <p style="text-align:center;font-size:19px"><a style="font-weight: bold; font-style: italic;color:black">Açıklama:</a> Staj başvuru formuna ait doldurup kaydetmiş olduğunuz bilgiler aşağıdaki gibidir. Eksik veya yanlış oluşturduğunuz bilgilerinizi tekrardan güncelleyebilir veya başvuru formunuzu sistemden silip tekrardan yükleyebilirsiniz.</p>
+    <br />
+
+    <div style="border: 1px solid ; padding: 8px; width: 390px; height: auto; margin-left: 390px ">
+
+        <div style="margin-left: 135px;">
+            <img src="~/Content/Logo/Uye_Ol_BSEU-Logo.png" />
+        </div>
+        <br />
+
+        <a style="text-align: center;font-weight:bold;color:black">Ad Soyad :</a> <a style="color:black">@item.Kullanici.Adi @item.Kullanici.Soyadi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">TC Kimlik No : </a> <a style="color:black">@item.Kullanici.Numara</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Adresiniz : </a> <a style="color:black">@item.Kullanici.Adres</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">İş Yeri Adı : </a> <a style="color:black">@item.IsyeriAdi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">İş Yeri Adresi : </a> <a style="color:black">@item.IsyeriAdresi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Başlangıç Tarihi : </a> <a style="color:black">@item.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Bitiş Tarihi : </a> <a style="color:black">@item.StajBitisTarihi.ToString().TrimEnd('0', ':')</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Cumartesi Çalışıyormusunuz? : </a> <a style="color:black">@item.CumartesiCalisiyorMu</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Türü : </a> <a style="color:black">@item.StajAdi.Adi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Süresince Denk Gelen Günlerinizin Sayısı : </a> <a style="color:black">@item.HaftaIciGunSayisi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Süresince Denk Gelen Resmi Tatil Sayısı : </a> <a style="color:black">@item.ResmiTatilSayisi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Toplam Çalışma Gününüz : </a> <a style="color:black">@item.ToplamCalismaSüresi</a> <br /><br />
+
+        @if (item.Kullanici.StajDurumID != 1)
+        {
+            <a href="/Kullanici/StajBaslangicFormunuGuncelle" style="margin-left:40px"><button type="submit" class="btn btn-info">Bilgilerimi Güncelle</button></a>
+            <a style="margin-left:40px" onclick="StajBaslangicFormunuSil(@item.ID)"><button type="submit" class="btn btn-danger">Bilgilerimi Sil</button></a> <br /><br />
+        }
+    </div>
+}
+
+<br />
+@*<table class="table table-striped">
+        <thead>
+
+            <tr>
+                <th scope="col">Adı Soyadı</th>
+                <th scope="col">TC Kimlik No</th>
+                <th scope="col">Adres</th>
+                <th scope="col">İş Yeri Adresi</th>
+                <th scope="col">Staj Başlangıç Tarihi</th>
+                <th scope="col">Staj Bitiş Tarihi</th>
+                <th scope="col">Cumartesi Çalışıyormusunuz</th>
+                <th scope="col">Staj Türü</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Kullanici.Adi @item.Kullanici.Soyadi</td>
+                <td>@item.Kullanici.Numara</td>
+                <td>@item.Kullanici.Adres</td>
+                <td>@item.IsyeriAdi</td>
+                <td>@item.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</td>
+                <td>@item.StajBitisTarihi.ToString().TrimEnd('0', ':')</td>
+                <td>@item.CumartesiCalisiyorMu</td>
+                <td>@item.StajAdi.Adi</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="/Kullanici/StajBaslangicFormunuGuncelle"><button type="button" class="btn btn-danger btn-lg">Bilgilerimi Güncelle</button></a>
+    <a href="/Kullanici/StajBaslangicFormunuSil"><button type="button" class="btn btn-danger btn-lg">Bilgilerimi Sil</button></a>*@
+

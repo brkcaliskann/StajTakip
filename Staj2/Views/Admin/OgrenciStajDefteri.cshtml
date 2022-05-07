@@ -1,0 +1,282 @@
+﻿@model IEnumerable<Staj2.Models.Staj>
+
+@{
+    ViewBag.Title = "YapilanIsler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Staj2.Models;
+@{var i = 1;}
+
+<script>
+    function GunlukSil(id) {
+
+        if (confirm('Günlük Sayfası Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/StajDefteri/GunSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Günlük Sayfası Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/style.css" rel="stylesheet" type="text/css">
+    <link href="/Content/styles/lunar.css" rel="stylesheet" type="text/css" id="colorstyle">
+    <link href="/Content/demo/demo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Content/jquery-3.1.1.min.js"></script>
+    @*<script src="~/Content/demo/demo.js"></script>*@
+    @*<script src="~/Content/demo/SmoothScroll.min.js"></script>*@
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+</head>
+
+<br />
+
+<div class="container body-content">
+    @if (ViewBag.veriVarmi != null)
+    {
+        <div style="border: 2px solid; width: 1015px; font-size: 20px; height: 37.7cm; background-repeat: no-repeat; background-size: 100% 100%; ">
+
+
+            <img src="~/Content/Logo/ickapak2.jpg" />
+
+            <h1 style="margin-top:-352px;margin-left:500px;font-weight:bold;font-style:italic;color:black">@ViewBag.ogrenciAd @ViewBag.ogrenciSoyad</h1>
+            <h1 style="margin-top:-7px;margin-left:500px;font-weight:bold;font-style:italic;color:black">Bilgisayar Mühendisliği</h1>
+            <h1 style="margin-top:-7px;margin-left:570px;font-weight:bold;font-style:italic;color:black">@ViewBag.ogrenciSinif</h1>
+            <h1 style="margin-top:-13px;margin-left:500px;font-weight:bold;font-style:italic;color:black">@ViewBag.ogrenciNumara</h1>
+
+        </div>
+
+
+
+        <div style="border: 2px solid; width: 940px; font-size: 18px; margin-top: 40px; height: 36cm; font-family: Arial ">
+            <div style="margin-left:100px;margin-top:180px">
+                <p style="font-weight:bold">ÖĞRENCİNİN</p>
+                <div style="margin-left:70px">
+                    <p style="font-weight:bold">Adı Soyadı :</p>
+                    <p>
+                        <div style="border: 2px solid; width: 150px; margin-left: 550px;height:150px;margin-top:-60px;font-size:15px;text-align:center">
+                            <p style="margin-top:35px">Buraya öğrencinin fotoğrafı yapıştırılacak ve damgalanacaktır.</p>
+                        </div>
+                    </p>
+
+                    <p style="margin-top:-98px;font-weight:bold">Sınıfı :</p>
+                    <p style="font-weight:bold">Numarası :</p>
+                    <p style="font-weight:bold">İmzası :</p>
+                    <p style="font-weight:bold">Raporu Teslim Tarihi :</p>
+                </div>
+
+                <br /><br /><br />
+                <p style="font-weight:bold">STAJIN KODU :</p><br /><br /><br />
+                <p style="font-weight:bold">STAJ YAPILAN KURULUŞUN </p>
+
+                <div style="margin-left:70px">
+                    <p style="font-weight:bold">Adı Ve Adresi :</p>
+                    <p style="font-weight:bold">Stajın Başlangıç Tarihi :</p>
+                    <p style="font-weight:bold">Bitiş Tarihi :</p>
+                </div>
+
+                <br /><br /><br />
+                <p style="font-weight:bold">STAJYERDEN SORUMLU İŞYERİ YETKİLİSİNİN </p>
+                <div style="margin-left:70px">
+                    <p style="font-weight:bold">Adı Soyadı :</p>
+                    <p style="font-weight:bold">Unvanı :</p>
+                    <p style="font-weight:bold">İmzası :</p>
+                    <p style="font-weight:bold">İş yerinin Mühürü :</p>
+                </div>
+
+                <br /><br /><br />
+                <p style="font-weight:bold">RAPORU İNCELEYEN ÖĞETİM ELEMANININ  </p>
+                <div style="margin-left:70px">
+                    <p style="font-weight:bold">Adı Soyadı :</p>
+                    <p style="font-weight:bold">Staj Çalışmasına Verdiği Not :</p>
+                    <p style="font-weight:bold">İmzası :</p>
+                    <p style="font-weight:bold">Tarih :</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="border: 2px solid; width: 940px; font-size: 20px; height: 36cm; margin-top: 40px; font-family: Arial; font-size: 20px">
+            <p style="margin-top:300px;margin-left:50px">
+                Öğrencinin aşağıda belirtilen kurumda staj yapması uygun görülmüştür. <br />
+                Staj Yeri:
+            </p>
+
+            <p style="margin-top: 250px; margin-left: 50px">
+                Staj Komisyonu Üyesinin <br />
+                Adı ve Soyadı : <br />
+                İmzası :
+            </p>
+
+            <p style="text-align:center;font-weight:bold;margin-top:350px">
+                İŞYERİ İÇİN ÖNEMLİ NOT
+            </p>
+
+            <p style="margin-left:50px;text-align:justify;margin-right:50px">
+                İşyerlerinin öğrenci ile ilgili sorunlarının olması durumunda aşağıdaki e-posta adresine şikayetlerini bildirebilirler.
+            </p>
+
+            <br />
+            <p style="margin-left:50px">E-posta <a style="margin-left:250px;color:black"> bm_bb@bilecik.edu.tr </a> </p>
+
+        </div>
+
+
+        <div style="font-family:'Times New Roman';font-size:20px;margin-top:40px;width:940px">
+
+            <div style="border:0.5px solid;padding-left:10px">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p style="font-weight:bold;font-style:italic">ÖĞRENCİNİN</p>
+                    <p style="font-weight:bold;font-style:italic">Adı-Soyadı : <a style="background-color: green; color: white;font-weight:bold;font-style:italic">@ViewBag.ogrenciAd @ViewBag.ogrenciSoyad</a></p>
+                    <p style="font-weight:bold;font-style:italic">Numarası : <a style="background-color: green; color: white;font-weight:bold;font-style:italic">@ViewBag.ogrenciNumara </a></p>
+                }
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-family: 'Times New Roman'; font-weight: bold; font-style: italic; font-size: 20px ">
+                        <th scope="col" style="text-align:center">Gün No</th>
+                        <th scope="col" style="text-align:center">Tarih</th>
+                        <th scope="col" style="text-align:center">Yapılan Çalışma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr style="text-align:center;font-size:20px">
+                                <td style="font-style: italic">@i</td>
+                                <td style="font-style: italic">@item.Tarih.Value.Date.ToString().TrimEnd('0', ':')</td>
+                                <td style="font-style: italic">@item.Baslik</td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <p style="text-align:">Yukarıda kimliği yazılı öğrenci <a style="font-weight:bold;font-style:italic;color:black">@ViewBag.ogrenciStajbaslangic.Date.ToString().TrimEnd('0', ':')</a> tarihinden <a style="font-weight: bold; font-style: italic; color: black">@ViewBag.ogrenciStajbitis.Date.ToString().TrimEnd('0', ':')</a> tarihine kadar toplam <a style="font-weight: bold; font-style: italic; color: black ">@ViewBag.ogrenciCalismasuresi</a> iş günü kuruluşumuzda staj yapmıştır.</p>
+
+        <br />
+        <p style="margin-left: 620px; font-weight: bold">Değerlendirmeyi Yapan Sorumlu Mühendis</p><br />
+        <p style="margin-left: 620px">(Ad Soyad, Mühür ve İmza)</p>
+
+        <br />
+
+        foreach (var item in Model)
+        {
+            <div style="border: 2px solid; width: 940px; font-size: 20px; margin-top: 40px; height: 36cm">
+
+                <div style="border: 1px solid; width: 910px; height: 80px; margin-left: 13px; margin-top: 10px">
+
+                    <h3 style="margin-left: 5px; color: black;">Yapılan İş : <a style="background-color: red; color: white;font-weight:bold;font-style:italic">@item.Baslik</a> <a style="background-color: red; color: white; font-weight: bold; font-style: italic;float:right ">@item.Tarih.Value.Date.ToString().TrimEnd('0', ':') </a> <a style="color:black;float:right">Tarih:</a>  </h3>
+
+                </div>
+
+                <div style="margin-left:17px;margin-right:17px">
+                    <p>@Html.Raw(item.Icerik)</p>
+                </div>
+
+
+                <div style="border: 1px solid; width: 910px; margin-left: 13px; margin-top: auto ">
+                    <div style="margin-top:7px">
+                        <a style="color:black;margin-left:157px;margin-top:5px;font-weight:bold">Öğrencinin İmzası</a>
+
+                        <div style="border-left: 1px solid; margin-left:450px;margin-top:-35px">
+                            <a style="color:black;margin-left:220px;font-weight:bold">Staj Amirinin</a><br />
+                            <a style="color:black;margin-left:19px">Adı-Soyadı : </a><br /><br />
+                            <a style="color:black;margin-left:19px">İmzası : </a>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+
+
+        }
+
+        <div style="border: 2px solid; width: 940px; font-size: 20px; margin-top: 10px; margin-top: 40px; height: 36cm; font-family: Arial">
+
+            <br /><br /><br /><br />
+            <p style="text-align:center;font-weight:bold;font-size:25px">
+                BİLECİK ŞEYH EDEBALİ ÜNİVERSİTESİ
+            </p>
+
+            <p style="text-align:center;font-weight:bold;font-size:25px">
+                MÜHENDİSLİK FAKÜLTESİ
+            </p>
+
+            <p style="text-align:center;font-weight:bold;font-size:25px">
+                STAJ GENEL ESASLAR
+            </p><br />
+
+            <p style="font-weight:bold;margin-left:40px">I- GENEL İLKELER </p>
+
+            <div style="margin-left: 40px; margin-right: 40px;text-align:justify">
+                <a style="font-weight: bold; color: black">Madde 1:</a><a style="color: black"> Staj eğitiminin amacı Bilgisayar Mühendisliği Bölümü öğrencilerinin akademik öğrenim süresi içerisinde edindiği bilgiler doğrultusunda, mesleki görgü ve bilgilerini arttırmak, ilgili kamu ve özel kurulu şlarda bizzat uygulama yaparak deneyim kazanmalarını sağlamaktır.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 2:</a><a style="color: black"> Bilgisayar Mühendisliği Bölümünde ilk 4 yarıyılını tamamlayan öğrenciler 20 iş günü "BM 200" ve 20 iş günü "BM 300" olmak üzere toplam 40 iş günü staj yapmak yükümlülüğünde olup, stajlarını ba şarı ile tamamlamak zorundadırlar. Staj tarihleri 1-31 Temmuz yada 1-31 Ağustos arasında olmalıdır.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 3:</a><a style="color: black"> Her Bölümde öğrencilerin staj çalışmalarını düzenlemek ve yürütmek üzere bir Staj Komisyonu kurulur. Staj Komisyonları , Bölüm Başkanı ve görevlendirilen öğretim elemanlarından oluşur.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 4:</a><a style="color: black"> Bilgisayar Mühendisliği Bölümü her öğrenciye staj yeri bulmak zorunda değildir. Resmi veya özel kurum ve kuruluşlarca tahsis edilen staj kontenjanları Bölüm Staj Komisyonunca ilan edilir ve dağıtılır. Tahsis edilen staj yerlerinin yeterli olmaması durumunda, öğrencilerin kendi imkanları ile bulacağı ve Bölüm Staj Komisyonunun da uygun göreceği kamu veya özel sektöre ait işletmelerde staj yapması mümkündür. Hiçbir öğrenci kendi girişimiyle bulduğu işletmede Bölüm Staj Komisyonu’nun onayı olmadan staj yapamaz.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 5:</a><a style="color: black">
+                    5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu’nun 5/b maddesi gereğince zorunlu staja tabi tüm öğrencilere "İş Kazası ve Meslek Hastalığı Sigortası" yapılması ve sigorta primlerinin de Üniversitemizce ödenmesi gerekmektedir. Bu nedenle, staj yapacak öğrenciler, sigortalarının yapılabilmesi için kendilerinden istenen belgeleri, belirtilen süre ve şekilde eksiksiz olarak teslim etmek zorundadırlar. Dolayısıyla, Öğrencilerin, zorunlu staj sigortalarının yapılması için belirlediği staj tarihlerinin hiçbir şekilde değiştirilmemesi gerekmektedir. Eğer elde olmayan sebeplerle dilekçede belirtilen başlangıç-bitiş tarihlerinde değişiklik olması veya stajın yapılamaması halinde bunu Bilgisayar Mühendisliği Bölüm Başkanlığına bildirmeniz gerekmektedir.
+                </a><br /><br />
+            </div>
+
+            <p style="font-weight:bold;margin-left:40px">II – STAJ UYGULAMA  İLKELERİ</p>
+
+            <div style="margin-left: 40px; margin-right: 40px;text-align:justify">
+                <a style="font-weight: bold; color: black">Madde 6:</a><a style="color: black"> Staja giden her öğrenci, Staj Değerlendirme Formunu staj yaptığı birimin yetkilisine verir. Bu form, staj bitiminde yetkili kişi tarafından doldurulup onaylandıktan sonra ağzı kapalı ve üzerinde firma kaşesi/mühürü olan bir zarf içinde ilgili bölüme gönderilir. Kurum kasesi ve onayı olmayan formlar değerlendirmede dikkate alınmaz.</a><br /><br />
+
+            </div>
+
+        </div>
+
+        <div style="border: 2px solid; width: 940px; font-size: 20px; margin-top: 10px; height: 36cm;margin-top:40px;font-family:Arial">
+            <br /><br /><br />
+            <p style="font-weight:bold;margin-left:40px">
+                III- STAJIN	İZLENMESİ, STAJ RAPORUNUN HAZIRLANMASI VE DEĞERLENDİRME,STAJ MUAFİYETİ
+            </p>
+
+            <div style="margin-left: 40px; margin-right: 40px;text-align:justify">
+                <a style="font-weight: bold; color: black">Madde 7:</a><a style="color: black"> Staj komisyonu elemanları, gerekli görüldüğü durumlarda stajın amacına ve kurallarına uygun yürütülmesi için gerekli izlemeyi yapabilir veya stajın yapıldığı isletme ile iletişime geçip, staj yapan öğrenci hakkında bilgi alarak öğrencilerin izlenmesini sağlayabilir.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 8:</a><a style="color: black"> Öğrenciler staj dönemi sonunda MF Staj Yönergesi kapsamında ve bölüm staj kılavuzunda tanımlanan formatta bir "Staj Raporu" hazırlayarak bunu bölüme teslim etmek zorundadırlar. Bu kurallara uygun olmayan staj raporları değerlendirmeye alınmayacak ve öğrenci tarafından tekrar düzenlenecektir.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 9:</a><a style="color: black"> Stajlar, Bilgisayar Mühendisliği Bölüm Staj Komisyonu tarafından görevlendirecek öğretim elemanları tarafından en geç bir ay içinde değerlendirilir. Bu değerlendirme staj raporlarının incelenmesi seklinde veya gerekli görüldüğünde sözlü sınavlada yapılabilir. Staj sonuçları BAŞARILI/BAŞARISIZ olarak değerlendirilir. Red edilen stajlar için bir gerekçeli rapor hazırlanarak staj değerlendirme tutanağına eklenir ve öğrenci stajı tekrarlar. Stajla ilgili her türlü belge, staj değerlendirme toplantısından sonra Bölüm arşivinde saklanmak üzere Bölüme teslim edilir. Staj raporları öğrencinin ilişiği kesildikten sonra da üç yıl süreyle saklanır.</a><br /><br />
+                <a style="font-weight: bold; color: black">Madde 10:</a><a style="color: black"> Staj programlarının uygulanması üniversiteler arasında farklılık gösterdiğinden, dikey geçiş yapan öğrencilerin daha önce yapmış oldukları stajlar transfer edilemez. Bu öğrenciler stajlarını Bilecik Mühendislik Fakültesi staj yönergesine uygun şekilde yeniden yaparlar. Yatay geçiş yapan öğrencilerin stajları ise Fakülte Staj Komisyonu karanına göre kabul edilir.</a><br /><br />
+
+            </div>
+        </div>
+
+        <div style="border: 2px solid; width: 1015px; font-size: 20px; margin-top: 40px; height: 37.7cm; background-repeat: no-repeat; background-size: 100% 100%;">
+            <img src="~/Content/Logo/dıskapak1.jpg" />
+        </div>
+
+        <br />
+        <br />
+        <br />
+    }
+
+    else
+    {
+        <h1 style="font-weight:bold;font-style:italic;text-align:center;background-color:red;color:white">@ViewBag.Mesaj</h1>
+    }
+
+    <br /> <br />
+
+</div>

@@ -1,0 +1,208 @@
+﻿.arkaplan {
+    background-image: url('../Logo/Bilecik-Şeyh-Edebali-Üniversitesi.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    margin-left: -382px;
+    width: 1903px;
+}
+
+.Uyeol-form-block {
+    margin: 50px auto;
+    max-width: 340px;
+    background-color: white;
+    margin-left:10px;
+    margin-top:10px;
+    width:450px;
+}
+
+.Uyemisin-cerceve {
+    border-style: solid;
+    border-width: 1px;
+    width: 370px;
+    margin-left: 355px;
+    height: 1185px;
+    background-color: #F5F5F5
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 22%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align:center;
+    margin-left:30px;
+}
+
+label1 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 129px;
+    color:red;
+}
+
+label2 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 115px;
+    color: red;
+}
+
+label3 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 90px;
+    color: red;
+}
+
+label4 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 90px;
+    color: red;
+}
+
+label5 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 83px;
+    color: red;
+}
+
+label6 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 127px;
+    color: red;
+}
+
+label7 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 100px;
+    color: red;
+}
+
+
+.logo {
+    /*text-align: center;*/
+    margin: 16px 0 10px 0;
+    margin-left:120px;
+}
+
+button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 22%;
+    margin-left:30px;
+}
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+.UyeMisin-form-block {
+    background-color: #E0E0E0;
+    height: 210px;
+    text-align: center;
+    padding-top: 2em;
+    width: 368px;
+    margin-left: -25px;
+}
+
+.UyeMisin-p {
+    font-weight: bold;
+    font-style: italic;
+    /*margin-left: 510px;*/
+/*    background-color: white;
+    width: 965px;*/
+    margin-left:150px;
+}
+
+.UyeMisin-p1 {
+    font-weight: bold;
+    font-style: italic;
+    /*margin-left: 750px;*/
+    /*    background-color:white;
+    width:365px;*/
+    margin-left: 400px;
+}
+
+.UyeMisin-baslik {
+    background-color: #E0E0E0;
+    height: 100px;
+    text-align: center;
+    padding-top: 2em;
+    width: 340px;
+}
+
+.UyeMisin-h2 {
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    margin-top:-10px;
+}
+
+.UyeMisin-h3 {
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    color: white;
+    margin-top:5px;    
+}
+
+.UyeMisin-h1 {
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    background-color: #FFA726;
+    width: 800px;
+    height: auto;
+    margin-left: 170px;
+    color:white;
+}
+
+.UyeOl-Baslik {
+    margin-top:10px;
+    font-style: italic;
+    height: auto;
+    background-color: #E0F2F1;
+    color: white;
+}
+
+.UyeOl-IcerikAlani {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.buton {
+    width: 100%;
+    height: 1000px;
+    background: #ccc;
+}
+
+.Uyemisin-a:hover{
+    opacity:0.2;
+}
+
+.Mesaj-Kutu{
+    background-color:green;
+}
+
+.Uyari-Kutu{
+    background-color:red;
+}
+

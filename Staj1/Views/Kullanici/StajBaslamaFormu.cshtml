@@ -1,0 +1,72 @@
+﻿@model Staj1.Models.Kullanici
+
+@{
+    ViewBag.Title = "StajBaslamaFormu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+
+<link href="~/Content/CSS/AnaSayfa.css" rel="stylesheet" />
+
+<p style="text-align:center;font-size:19px"><a style="font-weight: bold; font-style: italic; ">Açıklama:</a> Lütfen aşağıda bulunan staj başvuru formunu, staj yapacağınız yer ve duruma göre eksiksiz şekilde doldurunuz ve kaydediniz. Formu doldurup kaydettikten sonra <a href="Kullanici/StajBaslangicFormum" class="Anasayfa-a" style="color:red">"Staj Başlangıç Formum"</a> sayfasında bilgilerinizi görebilirsiniz.</p>
+<br />
+
+<p style="text-align:center;font-size:19px"><a style="color:darkorange;font-weight:bold;font-style:italic"> "Staj Başlangıç ve Bitiş" </a> tarihlerini seçip <a style="color: darkorange; font-weight: bold; font-style: italic">"Cumartesi Çalışıyormusunuz?"</a> seçeneğini seçtikten sonra seçim durumunuza göre çalışma gününüz otomatik şekilde hesaplanacaktır. Lütfen staj başlangıç ve bitiş tarihlerinizi sisteme doğru şekilde kaydettiğinizden emin olunuz!! </p>
+<br />
+
+<div style="border: 1px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width:378px; margin-left:390px">
+
+    <div style="margin-left: 115px;">
+
+        <img src="~/Content/Logo/Uye_Ol_BSEU-Logo.png" />
+    </div>
+
+    <div style="margin-top: 10px">
+        <a style="font-weight:bold;color:green;text-align:center;color:green;text-align:center;font-weight:bold">@ViewBag.Mesaj</a><br /><br />
+    </div>
+
+    <div style="margin-top:-45px">
+
+        <a style="font-weight: bold; color: green; text-align: center; color: black"></a>@ViewBag.Mesaj1<br />
+
+        <a style="text-align: center; font-weight: bold; color: black">Ad Soyad : <a style="color:green"></a></a>@Model.Adi @Model.Soyadi<br />
+
+        <a style="text-align: center; font-weight: bold; color: black">TC Kimlik No : <a style=" color: green"></a></a>@Model.Numara<br />
+
+        <a style="text-align: justify; font-weight: bold; color: black">Adres : <a style="color: green"></a></a>@Model.Adres<br />
+    </div>
+
+
+    <form method="post" action="/Kullanici/StajBaslamaFormu">
+
+        <p style="text-align:center;font-weight:bold;color:black"><u>İş Yeri Adı </u></p> <textarea type="text" rows="2" name="isAdi" id="isAdi" required="" style=" width: 300px; margin-left: 35px"> </textarea>
+
+        <p style="text-align:center;font-weight:bold;color:black"><u>İş Yeri Adresi </u></p> <textarea type="text" rows="2" name="isAdresi" id="isAdresi" required="" style=" width: 300px; margin-left: 35px"> </textarea>
+
+        <p style="text-align: center; font-weight: bold; color: black"><u>Staj Başlangıç Tarihi </u> </p> <input type="date" name="stajBaslangic" id="stajBaslangic" required="" style=" width: 150px; text-align: center; margin-left: 105px " />
+
+        <p style="text-align: center; margin-top: 10px; font-weight: bold; color: black"><u>Staj Bitiş Tarihi  </u></p> <input type="date" name="stajBitis" id="stajBitis" required="" style=" width: 150px; text-align: center; margin-left: 105px " />
+
+        <p style="text-align: center; margin-top: 10px; font-weight: bold; color: black"><u>Cumartesi Çalışıyormusunuz? (Evet/Hayır) </u></p>
+
+        <select name="CumartesiCalisiyorMu" id="CumartesiCalisiyorMu" required="" style="width: 150px; text-align: center; margin-left: 105px; font-weight: bold; color: black ">
+            <option>Seçiniz</option>
+            <option>Evet</option>
+            <option>Hayır</option>
+        </select>
+
+        <p style=" text-align: center; margin-top: 10px; font-weight: bold; color: black"><u>Staj Türü(Adı): </u></p>
+
+        <select name="stajAdi" id="stajAdi" required="" style="width: 150px; text-align: center; margin-left: 105px; font-weight: bold; color: black ">
+            <option>Staj 1</option>
+        </select>
+        <br />
+        <br />
+        @if (Model.StajDurumID != 1)
+        {
+            <button type="submit" class="btn btn-success" style="margin-left:139px">Kaydet</button>
+        }
+        </form>
+</div>
+
+<br />

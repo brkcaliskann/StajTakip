@@ -1,0 +1,67 @@
+﻿@model StajTakip.Models.GeriGonderilenBelgeler
+
+@{
+    ViewBag.Title = "GeriGonderilenDosyaSil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="text-align:center">Dosya Sil</h2>
+<hr />
+
+<h3 style="font-style:italic;font-weight:bold;color:red">Bu belgeyi silmek istediğinizden eminmisiniz?</h3>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt style="text-align:center">
+            Adınız:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kullanici.Adi)
+        </dd>
+
+        <dt style="text-align:center">
+            Soyadınız:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kullanici.Soyadi)
+        </dd>
+
+        <dt style="text-align:center">
+            Okul Numaranız:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kullanici.Numara)
+        </dd>
+
+        <dt style="text-align:center">
+            Silinecek Belge:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BelgeAdi)
+        </dd>
+
+        <dt style="text-align:center">
+            Eklenen Tarih:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Belgeyi Sil" class="btn btn-danger btn-lg" /> <br /><br />
+            @Html.ActionLink("Geri Dön", "GonderilenBelgelerim")
+        </div>
+    }
+</div>

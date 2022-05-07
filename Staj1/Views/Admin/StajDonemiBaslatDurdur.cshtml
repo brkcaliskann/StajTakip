@@ -1,0 +1,32 @@
+﻿@model Staj1.Models.StajBaslatilsinMi
+@{
+    ViewBag.Title = "StajDonemiBaslatDurdur";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+    <h2 style="font-style: italic; font-weight: bold; text-align: center; color: red ">Staj Dönemini Başlat-Durdur</h2>
+    <hr />
+    <p style="text-align: center"><a style="font-weight: bold;color:red">Açıklama:</a> Staj dönemini seçili liste üzerinde bulunan <a style="font-style:italic;color:red">"Staj Dönemini Başlat"</a> seçeneği ile öğrencilere açabilir <a style="font-style: italic; color: red">"Stajı Dönemini Kapat"</a> seçeneği ile kapatabilirsiniz.</p>
+    <form method="post" action="/Admin/StajDonemiBaslatDurdur">
+        <select style="font-size: 25px; width: 360px; font-weight: bold; font-style: italic;text-align:center;margin-left:390px" name="StajBaslatilsinMi" id="StajBaslatilsinMi">
+            <option style="font-size: 25px; width: 360px; font-weight: bold; font-style: italic;text-align:center;margin-left:300px">Seçiniz</option>
+            <option style="font-size: 25px; width: 360px; font-weight: bold; font-style: italic;text-align:center;margin-left:300px">Staj Dönemi Başlat</option>
+            <option style="font-size: 25px; width: 360px; font-weight: bold; font-style: italic;text-align:center;margin-left:300px">Staj Dönemi Kapat</option>
+        </select>
+
+        <br /><h1 style="font-weight: bold; font-style: italic; text-align: center; background-color: #009688; color: white ">@ViewBag.Mesaj</h1>
+
+        <br />
+
+        <p style="text-align: center;font-weight:bold;font-style:italic;color:red"> Açıklama Metini</p>
+
+        <textarea class="form-control" cols="20" id="Description" name="aciklama" rows="2" style="font-size:20px" required="">@Model.Aciklama</textarea>
+
+        <br />
+        <a><button type='submit' class='btn btn-success btn-lg btn-block'>Onayla</button></a>
+        <br />
+    </form>
+}

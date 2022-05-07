@@ -1,0 +1,52 @@
+﻿@model Staj2.Models.KullaniciRol
+
+@{
+    ViewBag.Title = "YetkiVer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<p style="text-align: center"><a style="font-weight: bold; text-align: center;color:red">Açıklama:</a> Seçilen kullanıcıya ait bilgiler aşağıda listelenmiştir. Lütfen kullanıcının yetki bilgisini seçtikten sonra onaylayınız.</p>
+
+<h3 style="font-weight: bold;text-align:center"><a style=" color:red"> Kullanıcı Bilgileri </h3>
+<hr />
+
+<form action="/Admin/YetkiBelirle" method="post">
+
+    <h3 style="font-weight: bold; font-style: italic ;text-align:center ;background-color:red ;color:white">@ViewBag.Mesaj</h3>
+
+    <h3 style="font-weight: bold; font-style: italic ;text-align:center ;color:green">@ViewBag.Mesaj1</h3>
+
+    <div style="border: 2px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width:650px; margin-left:250px">
+
+        @if (Model != null)
+        {
+            @Html.EditorFor(model => model.Kullanici.KullaniciID, new { htmlAttributes = new { @type = "hidden", @class = "form-control", @Name = "id" } })
+
+            <p style="text-align: center"><a style="font-weight: bold; text-align: center;color:black">Kullanıcı Adı:</a> @Model.Kullanici.Adi</p>
+
+            <p style="text-align: center"><a style="font-weight: bold; text-align: center; color: black ">Kullanıcı Soyadı:</a> @Model.Kullanici.Soyadi</p>
+
+            <p style="text-align: center"><a style="font-weight: bold; text-align: center; color: black ">Kullanıcı E-Posta:</a> @Model.Kullanici.Mail</p>
+
+            <p style="text-align: center"><a style="font-weight: bold; text-align: center; color: black ">Kullanıcının Kayıt Tarihi: </a> @Model.Kullanici.KayıtTarihi</p>
+
+            <p style="text-align: center"><a style="font-weight: bold; text-align: center; color: black ">Kullanıcının Telefon No:</a> @Model.Kullanici.TelefonNo</p>
+
+            <p style="text-align: center"><a style="font-weight: bold; text-align: center; color: black ">Kullanıcı Adres:</a> @Model.Kullanici.Adres</p>
+
+            <p style="font-weight: bold; text-align: center; color: black ">Yetkilendirme:</p>
+
+            <select style="width: 400px; text-align: center; margin-left: 119px" name="data" id="data" required="">
+                <option style="">Seçiniz</option>
+                <option style="">Kullanici</option>
+                <option style="">Eğitim Elemanı</option>
+            </select>
+        }
+        <br /><br />
+        <button type="submit" class="btn btn-success" style="margin-left:285px">Onayla</button>
+    </div>
+</form>
+
+<br />

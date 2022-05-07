@@ -1,0 +1,197 @@
+﻿@model Staj2.Models.Staj
+
+@{
+    ViewBag.Title = "GunlukYaz";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+
+    <script type="text/javascript" src="~/Content/jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/ckeditor/ckeditor.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/ckfinder/ckfinder.js")"></script>
+
+    @*<script src="~/pastefromword/plugin.js"></script>*@
+
+    @*<script type="text/javascript" src="~/Content/jquery.mask.min.js"></script>*@
+
+    @*<script type="text/javascript">
+            $(function () {
+                $('#tarih').mask("99/99/9999");
+            });
+        </script>*@
+
+</head>
+
+@*@if (ViewBag.data == true)*@
+@*{*@
+<br />
+<p style="text-align: center"><a style="font-weight: bold;color:black">Açıklama:</a> Staj günlüğünüzü sistem üzerinden gün gün doldurduktan sonra oluşturmuş olduğunuz defterinizi sistem üzerinden indirip gerekli imza,mühür veya kaşe gerektiren yerleri doldurabilirsiniz. Lütfen günlük olarak yapılan işlerinizi aşağıdaki form üzerinden doldurup kaydediniz.</p>
+
+@*<h3 style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Staj günlüğünüzü sistem üzerinden gün gün doldurduktan sonra oluşturmuş olduğunuz defterinizi sistem üzerinden indirip gerekli imza,mühür veya kaşe gerektiren yerleri doldurabilirsiniz. Lütfen günlük olarak yapılan işlerinizi aşağıdaki form üzerinden doldurup kaydediniz.</h3>*@
+<hr />
+
+<script>
+    function blink() {
+        $('#TarihMesaj').animate({ opacity: 0 }, 50, "linear", function () {
+            $(this).delay(300);
+            $(this).animate({ opacity: 1 }, 50, function () {
+                blink(this);
+            });
+            $(this).delay(800);
+        });
+    }
+
+
+
+    function DateCheck() {
+
+
+        var CurrentDate = $('#tarih').val();
+
+        var model = {
+            "CSRF-TOKEN-MOONGLADE-FORM": $('input[name="CSRF-TOKEN-MOONGLADE-FORM"]').val(),
+            "CurrentDate": CurrentDate,
+
+        };
+
+
+        $.ajax({
+            url: '/StajDefteri/DateCheck',
+            type: "POST",
+            data: model,
+            success: function (result) {
+                if (result == "True") {
+
+                    $('#TarihMesaj').html('Bu tarihte günlük kaydı bulundu. Lütfen farklı bir tarih seçiniz!!!');
+                    $('#TarihMesaj').css({ 'color': 'red' });
+                    /*blink()*/
+
+
+
+                }
+                else if (result == "False") {
+                    $('#TarihMesaj').html('');
+                }
+            }
+        });
+    }
+
+</script>
+
+
+<div>
+    <form action="/StajDefteri/GunlukYaz" method="post">
+        <input type="hidden" name="StajID" id="StajID" value="@Model.StajID" />
+        <h3 style="font-weight: bold; font-style: italic; color: white; background-color:red; text-align:center">@ViewBag.Mesaj</h3>
+
+        <h3 style="font-weight: bold; font-style: italic; color: white; background-color:green; margin-left: 170px ;text-align:center">@ViewBag.Mesaj1</h3>
+
+        @*<h3 style="font-weight: bold; font-style: italic; color: #0097A7; margin-left: 470px"> (Lütfen staj günü yapılan işin başlığını belirtiniz.) </h3>*@
+
+        @*<h3 style="color: black; text-align:center; font-weight: bold; margin-left:-30px">
+                Yapılan İş Başlığı
+                @Html.TextBoxFor(model => model.Baslik, new { @type = "text", @Name = "baslik", @id = "baslik", @style = "width: 650px; margin-left: 20px;color:black;text-align:center", @required = "" })
+
+            </h3>*@
+
+        <p style="text-align:center;font-weight:bold;color:black;font-size:22px"><u>Yapılan İş Başlığı</u></p> @Html.TextBoxFor(model => model.Baslik, new { @type = "text", @Name = "baslik", @id = "baslik", @style = "width: 850px; margin-left: 140px;color:black;text-align:center", @required = "" })
+
+        <p style="text-align: center; font-weight: bold; color: black; font-size: 22px;margin-top:10px"><u>Tarih</u></p> @Html.TextBoxFor(model => model.Tarih, "{0:yyyy-MM-dd}", new { @type = "date", @Name = "tarih", @id = "tarih", @style = "width: 240px;text-align:center;color:black;margin-left:450px", @onchange = "DateCheck()", @required = "" })
+
+        <div style="margin-top:10px">
+            <a style="color: #0097A7; margin-left: 340px;margin-top:100px;font-weight:bold" id="TarihMesaj">
+            </a>
+        </div>
+
+
+        @*<h3 style="color: black;margin-left:157px; font-weight: bold; font-style: italic">
+            Tarih
+            @Html.TextBoxFor(model => model.Tarih, "{0:yyyy-MM-dd}", new { @type = "date", @Name = "tarih", @id = "tarih", @style = "width: 240px;text-align:center;color:black;margin-left:20px", @onchange = "DateCheck()", @required = "" })
+
+
+
+
+            </h3>*@
+        <p style="text-align: center; font-weight: bold; color: black; font-size: 22px;margin-top:10px;text-align:center"><u>Staj Günlüğünü Doldur</u></p>
+
+        <p style="color: black; margin-left: 135px;font-size:22px">
+            @*<a style="color: #0097A7; margin-left: 115px"> (Aşağıda bulunan editör yardımıyla staj süresince defterinizi gün gün dilediğiniz biçimde doldurabilirsiniz.) </a><br /><br />*@
+
+            <textarea class="ckeditor" id="Icerik" name="Icerik" required="">
+                @Model.Icerik
+            @*@Html.TextAreaFor(model => model.Icerik, new { id = "Icerik", @Name = "Icerik", @class = "ckeditor", @required = "" })*@
+
+
+        </textarea>
+        </p>
+
+        <div id="report"></div>
+
+        <label style="margin-left:530px">
+            <button type='submit' class='btn btn-success'>
+                @((Model.StajID == 0 ) ? "Kaydet" : "Güncelle")
+            </button>
+        </label><br /><br />
+    </form>
+</div>
+@*}*@
+
+@*else
+    {
+        <h2 style="font-weight: bold; font-style: italic; ; text-align:center"> <a style="color: white; background-color: red">Staj defterinizi oluşturabilmeniz için staj başvurunuzun onaylanması gerekmektedir. Lütfen staj başvurusu yapınız veya başvurunuzun onaylanmasını bekleyiniz.</a></h2>
+    }*@
+<script type="text/javascript">
+
+    var editor = CKEDITOR.instances['Icerik'];
+
+    if (editor) { editor.destroy(true); }
+
+    CKEDITOR.replace('Icerik', {
+                enterMode: CKEDITOR.ENTER_BR,
+        /*height: '29.7cm',*/
+        disableAutoInline: false,
+        //filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+        //filebrowserUploadUrl: '/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        //filebrowserWindowWidth: '1000',
+        //filebrowserWindowHeight: '700',
+        contentsCss: 'body {overflow:hidden;}',
+        removePlugins: 'resize',
+
+        wordcount: {
+            showParagraphs: true,
+            showWordCount: true,
+            showCharCount: true,
+            countSpacesAsChars: false,
+            countHTML: false,
+            maxWordCount: -1,
+            maxCharCount: 10000
+        }
+
+    });
+
+    $("form").submit(function (e) {
+        var totalcontentlength = CKEDITOR.instances['Icerik'].getData().replace(/<[^>]*>/gi, '').length;
+        if (!totalcontentlength) {
+            alert('Lütfen editör içeriğini doldurunuz');
+            e.preventDefault();
+        }
+    });
+
+    //CKEDITOR.replace('Icerik');
+    //$("ornek").submit(function (e) {
+    //    var totalcontentlength = CKEDITOR.instances['editor'].getData().replace(/<[^>]*>/gi, '').length;
+    //    if (!totalcontentlength) {
+    //        alert('Please enter Your a Any Comments');
+    //        e.preventDefault();
+    //    }
+    //});
+
+     CKFinder.setupCKEditor(null, '@Url.Content("~/ckfinder/")');
+</script>
+
+
+
+

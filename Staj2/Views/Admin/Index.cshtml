@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Staj2.Models.KullaniciRol>
+@using Staj2.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script>
+    function OgrenciKaydiSil(id) {
+
+        if (confirm('Öğrenci Kaydı Silinsin mi?')) {
+            var model = {
+                "id": id
+            };
+            $.ajax({
+                url: '/Admin/OgrenciKaydiSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <p style="text-align: center;font-size:19px"><a style="font-style: italic; font-weight: bold;color:black">Açıklama:</a> Kayıtlı olan tüm kullanıcılar ve bu kullanıcılara ait bilgilere aşağıdaki listeden ulaşabilirsiniz.</p>
+
+    <br />
+    <br />
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr style="color:red;font-size:17px">
+                <th scope="col" style="font-weight:bold">Öğrenci Adı Soyadı</th>
+                <th scope="col" style="font-weight:bold">Numarası</th>
+                <th scope="col" style="font-weight:bold">E-Posta</th>
+                <th scope="col" style="font-weight:bold">Tel-No</th>
+                <th scope="col" style="font-weight:bold">Adres</th>
+                <th scope="col" style="font-weight:bold">Kayıt Tarihi</th>
+                <th scope="col" style="font-weight:bold">Başvuru Evrakları</th>
+                <th scope="col" style="font-weight:bold">Staj Başvuru Durumu</th>
+                <th scope="col" style="font-weight:bold">Başvuruyu Değerlendiren</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+            <tr style="font-size: 17px">
+
+                <td style="">@item.Kullanici.Adi @item.Kullanici.Soyadi</td>
+                <td style="">@item.Kullanici.Numara</td>
+                <td style="">@item.Kullanici.Mail</td>
+                <td style="">@item.Kullanici.TelefonNo</td>
+                <td style="">@item.Kullanici.Adres</td>
+                <td style="">@item.Kullanici.KayıtTarihi</td>
+
+
+                @if (item.Kullanici.StajDurum.StajDurumID == 5)
+                {
+                    <td style="font-weight:bold;font-style:italic;color:red">@item.Kullanici.StajDurum.StajDurumAdi</td>
+                }
+                @if (item.Kullanici.StajDurum.StajDurumID == 3)
+                {
+                    <td style="font-weight:bold;font-style:italic;color:gold">@item.Kullanici.StajDurum.StajDurumAdi</td>
+                }
+                @if (item.Kullanici.StajDurum.StajDurumID == 2)
+                {
+                    <td style="font-weight:bold;font-style:italic;color:blue">@item.Kullanici.StajDurum.StajDurumAdi</td>
+                }
+                @if (item.Kullanici.StajDurum.StajDurumID == 1)
+                {
+                    <td style="font-weight:bold;font-style:italic;color:green">@item.Kullanici.StajDurum.StajDurumAdi</td>
+                }
+                @if (item.Kullanici.StajDurum.StajDurumID == 4)
+                {
+                    <td style="font-weight:bold;font-style:italic;color:orange">@item.Kullanici.StajDurum.StajDurumAdi</td>
+                }
+
+                <td style=""><a href="/Admin/BasvuruDosyalari" style="">Staj Evraklarını Görüntüle </a></td>
+
+                @if (item.Kullanici.BasvuruyuDegerlendiren == null)
+                {
+                    <td style="">Başvuru Değerlendirilmedi</td>
+                }
+                @if (item.Kullanici.BasvuruyuDegerlendiren != null)
+                {
+                    <td style="">@item.Kullanici.BasvuruyuDegerlendiren</td>
+                }
+
+                <td><button type="submit" class="btn btn-danger"><a onclick="OgrenciKaydiSil(@item.KullaniciID)" style="color:white">Öğrenci Kaydını Sil</a></button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+}
+
+@if (User.IsInRole("Kullanici"))
+{
+
+    <br />
+    <h1 style="font-weight: bold;font-style:italic ; text-align:center; color:red">Bilecik Şeyh Edebali Üniversitesi Staj Takip Programına Hoşgeldiniz</h1>
+    <hr />
+    <h2 style="font-style: italic; text-align: center">Kullanıcı paneli üzerinden staj ile ilgili gerekli işlemlerinizi gerçekleştirebilirsiniz.</h2>
+    <br />
+}
+
+
+

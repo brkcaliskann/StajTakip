@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "UyeOl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <link href="~/Content/CSS/UyeOl.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Content/jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#telefon_numarasi').mask("0(999) 999 99 99");
+
+            $('#okul_numarasi').mask("99999999999");
+        });
+    </script>
+
+</head>
+
+<div>
+
+    <div class="UyeOl-Baslik">
+        <div class="UyeOl-IcerikAlani">
+            <div style="margin-left:525px ">
+                <h1><b>Üye Ol</b></h1>
+            </div>
+        </div>
+        <br />
+    </div>
+    <hr />
+
+
+    <p class="UyeMisin-p"><a style="color:red">Açıklama:</a> Kullanıcı olarak giriş yapabilmeniz için üye olmanız gerekmektedir. Üyelik bilgileriniz ile sisteme kaydolduktan sonra giriş yapabilirsiniz.</p>
+    <br />
+    <p class="UyeMisin-p1"><a style="color:red">Not:</a> Lütfen bilgilerinizi eksiksiz şekilde doldurunuz.</p>
+
+    <br />
+
+    <div class="Uyemisin-cerceve">
+        <form action="/Kullanici/UyeOl" method="post">
+            <div class="Uyeol-form-block">
+
+                <div class="logo">
+                    <img src="~/Content/Logo/Uye_Ol_BSEU-Logo.png" />
+                </div>
+
+                <div class="UyeMisin-baslik">
+                    <h2 class="UyeMisin-h2">Yeni Üyelik</h2>
+                </div>
+
+                <div class="Mesaj-Kutu">
+                    <h3 class="UyeMisin-h3">@ViewBag.Mesaj</h3>
+                </div>
+
+                <div class="Uyari-Kutu">
+                    <h3 class="UyeMisin-h3">@ViewBag.Uyari</h3>
+                </div>
+
+                <div class="container">
+                    @*<label1>Adınız*</label1><br />*@
+                    <input type="text" placeholder="Ad" name="Adi" required><br />
+
+                    @*<label2>Soyadınız*</label2><br />*@
+                    <input type="text" placeholder="Soyad" name="Soyadi" required><br />
+
+                    <textarea type="text" rows="2" placeholder="Adres" name="Adres" style="width:250px;margin-left:30px;text-align:center" required></textarea><br />
+
+                    @*<label3>E-Posta Adresiniz*</label3><br />*@
+                    <input type="text" placeholder="E-Posta Adresi" name="Mail" required><br />
+
+                    @*<label4>Okul Numaranız*</label4><br />*@
+                    <input type="text" placeholder="Okul Numarası" name="Numara" id="okul_numarasi" required><br />
+
+                    @*<label5>Telefon Numaranız*</label5><br />*@
+                    <input type="text" placeholder="0(---)/---/----" name="TelefonNo" id="telefon_numarasi" required><br />
+
+                    <input type="text" placeholder="Sınıf" name="Sinif" required><br />
+
+                    @*<label6>Parola*</label6><br />*@
+                    <input type="password" placeholder="Parola" name="Parola" required><br />
+
+                    @*<label7>Parola Tekrar*</label7><br />*@
+                    <input type="password" placeholder="Parola Tekrar" name="ParolaTekrar" required><br />
+
+                    <button type="submit">Kaydol</button>
+                    <div class="UyeMisin-form-block">
+                        <p style="font-weight: bold; font-style: italic;"><a style="color:red">*</a> ile işaretli alanların doldurulması zorunludur. <br /><br />Zaten Üye misiniz? <a href="/Kullanici/GirisYap" class="Uyemisin-a" style="color:magenta">Giriş Yap</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+    <br />
+</div>
+
+

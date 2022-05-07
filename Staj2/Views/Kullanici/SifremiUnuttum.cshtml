@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "SifremiUnuttum";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div>
+    <div style="border: 1px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 680px; margin-left: 250px">
+        <section>
+            <h1 style="text-align:center;color:red;font-weight:bold;font-style:italic">Doğrulama Kodu Gönder</h1><hr />
+            <h3 style="font-weight:bold;font-style:italic;text-align:center;color:red">@ViewBag.Uyari</h3>
+        </section>
+
+        <h3 style="text-align:center">Lütfen sisteme giriş yaparken kullandığınız e-posta adresini aşağıdaki alana yazınız.</h3>
+        <!--end page-title-->
+        <section>
+            <form method="post">
+                <div>
+                    <label for="email" style="font-style:italic;margin-left:265px">E Posta Adresiniz</label>
+                    <input type="email" style="width:450px;text-align:center;margin-left:100px" required="" name="Mail" id="email" placeholder="Mail Adresiniz">
+                </div>
+                <!--end form-group-->
+
+                
+                <div>
+                    <button type="submit" style="margin-left:250px;margin-top:10px" class="btn btn-success">Doğrulama Kodu Gönder</button>
+                </div>
+
+                <!--end form-group-->
+            </form>
+
+           
+
+        </section>
+    </div>
+    <!--col-md-4-->
+</div>
+<br />

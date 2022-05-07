@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Staj1.Models.StajyerOgrenciBaslatma>
+
+@{
+    ViewBag.Title = "StajyerOgrenciStajaBaslatmaBilgileri";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{var i = 1;}
+
+<script>
+    function StajyerOgrenciStajaBaslatmaBilgileriSil(id) {
+
+        if (confirm('Başvuru Formu Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Admin/StajyerOgrenciStajaBaslatmaBilgileriSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Başvuru Formu Başarıyla Silidi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+
+</script>
+
+<br />
+<p style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Staj başvuru formu kaydedilen öğrencilerin listesine aşağıdan ulaşabilirsiniz. </p>
+<br />
+
+<div style="font-size:20px">
+    <form action="/Admin/StajyerOgrenciStajaBaslatmaBilgileri" method="post">
+
+        <input type="date" name="baslangicTarih" style="margin-left:350px;width:150px" />
+
+        <input type="date" name="bitisTarih" style="width:150px" />
+
+        <button type='submit' class='btn btn-success'>Seçili Kayıtları Getir</button><br /><br />
+
+        <h3 style="text-align:center;color:red;font-weight:bold;font-style:italic">@ViewBag.Mesaj</h3>
+
+        <h3 style="text-align:center;color:red;font-weight:bold;font-style:italic;color:green">@ViewBag.Mesaj1</h3>
+
+        <table class="table table-striped">
+            <thead>
+
+                <tr style="color:red;font-size:16px">
+                    <th scope="col" style="font-weight: bold">Sıra No</th>
+                    <th scope="col" style="font-weight:bold">Adı Soyadı</th>
+                    <th scope="col" style="font-weight:bold">TC Kimlik No</th>
+                    <th scope="col" style="font-weight:bold">Öğrencinin Adresi</th>
+                    <th scope="col" style="font-weight:bold">İş Yeri Adı</th>
+                    <th scope="col" style="font-weight:bold">İş Yeri Adresi</th>
+                    <th scope="col" style="font-weight:bold">Staja Başlama Tarihi</th>
+                    <th scope="col" style="font-weight:bold">Staj Bitiş Tarihi</th>
+                    <th scope="col" style="font-weight:bold">Çalışma Süresi</th>
+                    <th scope="col" style="font-weight:bold">Cumartesi Çalışıyor Mu</th>
+                    <th scope="col" style="font-weight:bold">Staj Türü</th>
+                    <th scope="col" style="font-weight:bold">Staj Durumu</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr style="font-size:16px">
+                            <td style="">@i</td>
+                            <td>@item.Kullanici.Adi @item.Kullanici.Soyadi</td>
+                            <td>@item.Kullanici.Numara</td>
+                            <td>@item.Kullanici.Adres</td>
+                            <td>@item.IsyeriAdi</td>
+                            <td>@item.IsyeriAdresi</td>
+                            <td>@item.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</td>
+                            <td>@item.StajBitisTarihi.ToString().TrimEnd('0', ':')</td>
+                            <td style="color:red;font-weight:bold;font-style:italic">@item.ToplamCalismaSüresi <a style="color:black">iş günü çalışmıştır. </a></td>
+                            <td>@item.CumartesiCalisiyorMu</td>
+                            <td>@item.StajAdi.Adi</td>
+                            <td>@item.Kullanici.StajDurum.StajDurumAdi</td>
+                            <td><a onclick="StajyerOgrenciStajaBaslatmaBilgileriSil(@item.ID)"><button type="button" class="btn btn-danger btn-sm">Kaydı Sil</button></a> </td>
+                        </tr>
+
+                        i++;
+                    }
+                }
+
+            </tbody>
+
+        </table>
+    </form>
+</div>
+
+<br />
+<br />
+
+<p style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Seçili tarihler arasında excel çıktısı alabilirsiniz. </p>
+
+
+<form action="/Admin/StajyerOgrenciStajaBaslatmaFormu">
+
+    <input type="date" name="baslangicTarih" style="margin-left:350px;width:150px" />
+
+    <input type="date" name="bitisTarih" style="width:150px" />
+
+    <button type='submit' class='btn btn-success'>Seçili Tarihler Arası Excel Çıktısı Al</button><br /><br />
+
+</form>
+<br />
+<br />
+

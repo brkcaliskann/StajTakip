@@ -1,0 +1,61 @@
+﻿.Anasayfa-cerceve {
+    text-align: center;
+    border: 2px dotted #000;
+    padding: 8px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    width: 420px;
+    margin-left: 355px;
+    background-color: #FFF3E0;
+    display: table;
+}
+
+.Anasayfa-IcerikAlani {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.Anasayfa-h1 {
+    font-weight:bold;
+    height: auto;
+/*    background-color: #E0F2F1;*/
+    margin-top: 20px;
+    text-align:center;
+}
+
+.StajBilgilendirme-h1 {
+/*    font-style: italic;*/
+    height: auto;
+/*    background-color: #FFCCBC;*/
+    margin-top: 20px;
+}
+
+.StajSonrasiYapilacaklar-h1 {
+/*    font-style: italic;*/
+    height: auto;
+/*    background-color: #FFAB40;*/
+    margin-top: 20px;
+}
+
+.DikkatEdilecekHususlar-h1 {
+/*    font-style: italic;*/
+    height: auto;
+/*    background-color: #8C9EFF;*/
+    margin-top: 20px;
+}
+
+.Anasayfa-h2 {
+    text-align: center;
+/*    font-style: italic;*/
+    font-weight: bold;
+}
+
+.Anasayfa-a {
+    font-style: italic;
+    font-weight: bold;
+}
+
+    .Anasayfa-a:hover{
+        opacity:0.2;
+    }

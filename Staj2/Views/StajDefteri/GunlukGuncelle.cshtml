@@ -1,0 +1,117 @@
+﻿@model Staj2.Models.Staj
+
+@{
+    ViewBag.Title = "GunlukGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+
+    <script type="text/javascript" src="~/Content/jquery-3.1.1.min.js"></script>
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    <script src="~/ckfinder/ckfinder.js"></script>
+
+    <script type="text/javascript" src="~/Content/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#tarih').mask("99/99/9999");
+        });
+    </script>
+
+</head>
+
+<h1 style="font-weight: bold; font-style: italic; text-align:center">Staj Defterini Güncelle</h1>
+<hr />
+
+<h3 style="font-weight: bold; font-style: italic; color: white; background-color:green; text-align:center">@ViewBag.Mesaj</h3>
+
+<h3 style="font-weight: bold; font-style: italic; color: white; background-color:red; text-align:center">@ViewBag.Mesaj4</h3>
+
+<!--<form method="post" action="/StajDefteri/GunlukYaz">
+
+    <a>@Html.TextBoxFor(model => model.Baslik, new { @type = "text", @Name = "baslik", @id = "baslik", @style = "width: 650px; margin-left: 20px;color:black;text-align:center", @hidden = "true" })</a></h3>
+
+    <h3 style="color: black;margin-left:170px; font-weight: bold; font-style: italic"> <a style="width: 300px; margin-left: 115px; text-align: center; font-style: italic" id="tarih" name="tarih" required="">@Html.TextBoxFor(model => model.Tarih, "{0:yyyy-MM-dd}", new { @type = "date", @Name = "tarih", @id = "tarih", @style = "width: 240px;text-align:center;color:black", @hidden = "true" })</a> <a style="color: #0097A7; margin-left: 20px"></a> </h3>-->
+
+    @*@Html.TextAreaFor(model => model.Icerik, new { id = "ckeditor", @Name = "ckeditor", @class = "hidden", @hidden = "true" })*@
+
+        <!--<div style="width: 21cm; margin-top: 10px; margin-left: 115px" required="">
+            @Html.TextAreaFor(model => model.Icerik, new { id = "ckeditor1", @Name = "ckeditor1", @class = "hidden", @hidden = "true" })
+        </div>
+
+    <a><button type='submit' class='btn btn-warning'>Bilgileri Kaydet</button></a>
+
+</form>-->
+
+
+
+<form action="/StajDefteri/GunlukGuncelle" method="post">
+
+    <h3 style="font-weight: bold; font-style: italic; color: #0097A7; margin-left: 470px"> (Lütfen staj günü yapılan işin başlığını belirtiniz.)</h3>
+
+    <h3 style="color: black; text-align:center; font-weight: bold; font-style: italic">Yapılan İş Başlığı <a>@Html.TextBoxFor(model => model.Baslik, new { @type = "text", @Name = "baslik", @id = "baslik", @style = "width: 650px; margin-left: 20px;color:black;text-align:center" })</a></h3>
+
+    <h3 style="color: black;margin-left:170px; font-weight: bold; font-style: italic">Tarih <a style="width: 300px; margin-left: 115px; text-align: center; font-style: italic" id="tarih" name="tarih" required="">@Html.TextBoxFor(model => model.Tarih, "{0:yyyy-MM-dd}", new { @type = "date", @Name = "tarih", @id = "tarih", @style = "width: 240px;text-align:center;color:black" })</a> <a style="color: #0097A7; margin-left: 20px"> (Lütfen staj yaptığınız güne ait tarih bilgisini seçiniz.)</a> </h3>
+
+    <h3 style="color: black; font-weight: bold; font-style: italic; margin-left: 170px">
+
+        İçerik <a style="color: #0097A7; margin-left: 115px"> (Aşağıda bulunan editör yardımıyla staj süresince defterinizi gün gün dilediğiniz biçimde doldurabilirsiniz.)</a><br /><br />
+
+        <a style="margin-left:500px"><button type='submit' class='btn btn-success'>Bilgileri Getir</button></a>
+
+        <div style="width: 21cm; margin-top: 10px; margin-left: 115px" required="">
+            @Html.TextAreaFor(model => model.Icerik, new { id = "ckeditor", @Name = "ckeditor", @class = "ckeditor" })
+        </div>
+    </h3>
+
+</form>
+
+
+
+
+
+@*<script>
+        function TarihKontrol(tarih) {
+
+            var model = {
+                "tarih": tarih
+            };
+                $.ajax({
+                    url: '/StajDefteri/TarihKontrol',
+                    type: "POST",
+                    data: model,
+                    success: function (result) {
+                        alert("Yanlış Tarih")
+                        location.reload();
+                    }
+                });
+
+            }
+        }
+    </script>*@
+
+
+
+
+<script type="text/javascript">
+       var editor = CKEDITOR.instances['ckeditor'];
+                if (editor) { editor.destroy(true); }
+                CKEDITOR.replace('ckeditor', {
+                    enterMode: CKEDITOR.ENTER_BR,
+                    height: '29.7cm',
+
+                });
+        CKFinder.setupCKEditor(null, '@Url.Content("~/ckfinder/")');
+</script>
+
+@*<div>
+            <form action="/StajDefteri/GunlukGuncelle" method="post">
+
+                <input value="@Model.Baslik"/>
+
+                <input value="@Model.Tarih"/>
+
+            </form>
+    </div>*@

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Staj2.Models.StajyerOgrenciBaslatma>
+@{
+    ViewBag.Title = "StajBasvuruListesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script>
+    function Sil(id) {
+
+        if (confirm('Kayıt Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Admin/Sil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Kayıt Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<h1 style="font-weight: bold; font-style: italic;text-align:center">Staj 2 Başvurusu Onaylananların Listesi</h1><hr />
+
+<p style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Staj başvurusu onaylanan öğrencilere ait listeye aşağıdan ulaşabilirsiniz. </p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr style="color:red;font-size:17px">
+            <th scope="col" style="font-weight:bold;font-style:italic"> Adı</th>
+            <th scope="col" style="font-weight:bold;font-style:italic"> Soyadı</th>
+            <th scope="col" style="font-weight:bold;font-style:italic"> Numarası</th>
+            <th scope="col" style="font-weight:bold;font-style:italic"> E-Posta</th>
+            <th scope="col" style="font-weight:bold;font-style:italic"> Tel No</th>
+            <th scope="col" style="font-weight:bold;font-style:italic"> Staj Başlangıç Tarihi</th>
+            <th scope="col" style="font-weight:bold;font-style:italic"> Staj Bitiş Tarihi</th>
+            <th scope="col" style="font-weight:bold;font-style:italic">Staj Durumu</th>
+            <th scope="col" style="font-weight:bold;font-style:italic">Başvuruyu Değerlendiren</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr style="font-size:17px">
+
+            <td style="">@item.Kullanici.Adi</td>
+            <td style="">@item.Kullanici.Soyadi</td>
+            <td style="">@item.Kullanici.Numara</td>
+            <td style="">@item.Kullanici.Mail</td>
+            <td style="">@item.Kullanici.TelefonNo</td>
+            <td style="">@item.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</td>
+            <td style="">@item.StajBitisTarihi.ToString().TrimEnd('0', ':')</td>
+            <td style="">@item.Kullanici.StajDurum.StajDurumAdi</td>
+            <td style="">@item.Kullanici.BasvuruyuDegerlendiren</td>
+            <td><a href="@Url.Action("OgrenciStajDefteri", "Admin", new { id = @item.KullaniciID })"><button type="submit" class="btn btn-success">Staj Defterini İncele</button></a></td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+<button type="submit" style="margin-left:500px" class="btn btn-success"><a href="@Url.Action("BasvurusuOnaylananlarListe","Admin")" style="color:white">Excel Çıktısı Al</a></button>
+<br />
+<br />
+
+

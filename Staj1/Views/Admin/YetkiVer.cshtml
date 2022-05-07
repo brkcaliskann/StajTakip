@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Staj1.Models.KullaniciRol>
+
+@{
+    ViewBag.Title = "YetkiVer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Kayıtlı kullanıcılar arasından rol bazlı yetkilendirmeleri gerçekleştirebilirsiniz. </h3>
+<br />
+
+<table class="table table-striped">
+    <thead>
+
+        <tr style="color:red">
+            <th scope="col" style="">Adı</th>
+            <th scope="col" style="">Soyadı</th>
+            <th scope="col" style="">Kullanıcı Adı</th>
+            <th scope="col" style="">Mail</th>
+            <th scope="col" style="">Kayıt Tarihi</th>
+            <th scope="col" style="">Rol Adı</th>
+            <th scope="col" style="">Yetki Ver</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="">@item.Kullanici.Adi</td>
+            <td style="">@item.Kullanici.Soyadi</td>
+            <td style="">@item.Kullanici.Numara</td>
+            <td style="">@item.Kullanici.Mail</td>
+            <td style="">@item.Kullanici.KayıtTarihi</td>
+            
+
+            @if (item.Rol.RolAdi == "Eğitim Elemanı")
+            {
+                <td style=" font-weight: bold ; color: blue">@item.Rol.RolAdi</td>
+            }
+
+            @if (item.Rol.RolAdi == "Kullanici")
+            {
+                <td style="font-weight: bold"> @item.Rol.RolAdi </td>
+            }
+
+            <td><a href="@Url.Action("YetkiBelirle", "Admin", new { id = @item.Kullanici.KullaniciID })"><button type="submit" class="btn btn-warning">Yetki Belirle</button></a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Staj2.Models.StajDefteriTeslim>
+
+@{
+    ViewBag.Title = "StajyerOgrenciStajDefterleri";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{var i = 1;}
+
+<script>
+    function DosyayıSil(id) {
+
+        if (confirm('Dosya Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Admin/StajyerOgrenciStajDefterleriSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Dosya Başarıyla Silidi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<br />
+<p style="text-align: center"><a style="font-weight: bold;color:black">Açıklama:</a> Staj defterlerini sistem üzerinden teslim eden öğrencilere ve yüklenilen belgelere aşağıdaki listeden ulaşabilirsiniz.</p>
+<hr />
+
+<table class="table table-striped">
+    <thead>
+
+        <tr style="color: red; font-size: 17px">
+            <th scope="col" style="font-weight:bold">Sıra No</th>
+            <th scope="col" style="font-weight:bold">Ad Soyad</th>
+            <th scope="col" style="font-weight:bold">Numara</th>
+            <th scope="col" style="font-weight:bold">Adres</th>
+            <th scope="col" style="font-weight:bold">Mail</th>
+            <th scope="col" style="font-weight:bold">Dosya Adı</th>
+            <th scope="col" style="font-weight:bold">Yükleme Tarihi</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr style="font-size:17px">
+                <td style="">@i</td>
+                <td>@item.Kullanici.Adi @item.Kullanici.Soyadi</td>
+                <td>@item.Kullanici.Numara</td>
+                <td>@item.Kullanici.Adres</td>
+                <td>@item.Kullanici.Mail</td>
+                <td><a href="@Url.Action("Goster", "Admin", new { dosya = @item.DosyaAdi })" target="_blank">@item.DosyaAdi</a></td>
+                <td>@item.Tarih.ToString().TrimEnd('0', ':')</td>
+                <td style=""><a href="@Url.Action("Download1", "Admin", new { file = @item.DosyaAdi })"><button type="submit" class="btn btn-info">Dosyayı İndir</button></a></td>
+                @using (Html.BeginForm())
+                {
+                    <td style=""><a onclick="DosyayıSil(@item.ID)"><button type="button" class="btn btn-danger ">Dosyayı Sil</button></a></td>
+                }
+
+
+            </tr>
+
+            i++;
+        }
+
+
+    </tbody>
+
+</table>
+
+

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Staj2.Models.StajBasvuruBelgeleri>
+
+@{
+    ViewBag.Title = "BasvuruBelgelerim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Staj2.Models;
+@{Staj2DB context = new Staj2DB();
+    string numara = User.Identity.Name;
+    int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+    var data = context.StajBasvuruBelgeleri.Where(x => x.KullaniciID == kullaniciId && x.Kullanici.StajDurumID == 1).ToList();
+}
+
+<script>
+    function BasvuruBelgesiSil(id) {
+
+        if (confirm('Başvuru Belgesi Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Kullanici/BasvuruBelgesiSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Başvuru Belgesi Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<h3 style="font-weight: bold; text-align: center">Basvuru Belgelerim</h3>
+<hr />
+
+
+@if (data.Count() == 0)
+{
+    <p style="text-align:center;font-style:italic;font-size:19px">Lütfen yeni başvuru yapmak için <a href="/Kullanici/DosyaYukle" style="font-weight: bold; font-style: italic; color:goldenrod">tıklayınız</a></p>
+}
+
+<p style="font-weight: bold; color: #2E7D32; text-align: center; font-size:19px">@ViewBag.Mesaj1</p>
+<p style="font-weight: bold; color: #F44336; text-align: center; font-size: 19px ">@ViewBag.Mesaj</p>
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <table class="table table-striped">
+        <thead>
+
+            <tr style="font-weight:bold;font-size:19px">
+                <th scope="col">Yüklenilen Belge Adı</th>
+                <th scope="col">Belgeyi Görüntüle</th>
+                <th scope="col">Belgeyi Sil</th>
+                <th scope="col">Tarih</th>
+                @*<th scope="col">Staj Dönem</th>*@
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td><a href="@Url.Action("Goster", "Kullanici", new { dosya = @item.BelgeAdi })" target="_blank">@item.BelgeAdi</a></td>
+                <td><a href="@Url.Action("Download", "Kullanici", new { file = @item.BelgeAdi })"><button type="submit" class="btn btn-info">İndir</button></a></td>
+                <td><a onclick="BasvuruBelgesiSil(@item.ID)"><button type="submit" class="btn btn-danger ">Sil</button></a></td>
+                <td>@item.Tarih</td>
+                @*<td>Staj @item.StajDonemNO </td>*@
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+

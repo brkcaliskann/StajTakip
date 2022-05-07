@@ -1,0 +1,228 @@
+﻿@model IEnumerable<Staj1.Models.StajDefteriTeslim>
+
+@using Staj1.Models
+
+@{
+    ViewBag.Title = "StajDefteriniYukle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    Staj1DB context = new Staj1DB();
+
+    string numara = User.Identity.Name;
+    int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+
+    StajDefteriTeslim sdt = context.StajDefteriTeslim.Where(x => x.KullaniciID == kullaniciId).FirstOrDefault();
+
+}
+
+<head>
+    <script src="~/Content/js/jquery.blockUI.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/jquery.MetaData.js"></script>
+    <script src="~/Content/js/jquery.MultiFile.js"></script>
+    <script src="~/Content/js/jquery.MultiFile.pack.js"></script>
+    <script src="~/Content/js/jquery.validate.js"></script>
+</head>
+
+<link href="~/Content/js/basic.css" rel="stylesheet" />
+<link href="~/Content/js/dropzone.css" rel="stylesheet" />
+<script src="~/Content/js/dropzone.min.js"></script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Content/js/dropzone.min.js"></script>
+
+<script>
+    function DosyayıSil(id) {
+
+        if (confirm('Dosya Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/StajDefteri/DosyaSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Dosya Başarıyla Silidi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<br />
+<p style="text-align: center"><a style="font-weight: bold;color:red">Açıklama:</a>  Lütfen staj defterinizi aşağıda bulunan alana yükleyiniz ve kaydediniz. Yüklemiş olduğunuz defterinizi <a style="font-style: italic;color:green; font-weight:bold">Kaydedilen Belgeniz  </a> bölümünde görüntüleyebilirsiniz.</p>
+
+<br />
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <form action="/StajDefteri/StajDefteriniYukle" method="post" name="myDropzone1" id="myDropzone1" enctype="multipart/form-data">
+        <br />
+        <div>
+            <div id="previews" class="dz-default dz-message box__input dropzone" style="background-color: #E1F5FE ">
+                <div style="text-align:center">
+                    <i class="fa fa-cloud-upload" style="font-size:43px;position:relative;top:4px;"></i> <span style="margin-left:20px"><p style="font-size:25px">Lütfen yüklemek istediğiniz dosyayı seçiniz ya da bu alana sürükleyiniz.</p></span>
+                </div>
+            </div>
+            <br /><br />
+            <div style="text-align: center; border: 1px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 420px; margin-left: 355px; background-color: #FFEBEE ">
+                <h3 style="font-style: italic; font-weight: bold">Yüklenen Dosyanız</h3><hr style="border-width:9px" />
+
+                <div id="previewFiles" style="margin-top: -35px"></div><hr style="border-width:9px" />
+
+                @if (sdt == null)
+                {
+                <div style="text-align:center">
+                    <input type="submit" id="Submit" name="Submit" value="Kaydet" />
+                    <br /><br />
+
+                </div>
+                }
+
+            </div>
+        </div>
+        <br /><br />
+    </form>
+}
+
+
+@*<p style="text-align:center"></p>
+    <br />*@
+
+<p style="text-align: center"><a style="font-weight: bold;color:red">Açıklama:</a> Yüklemiş olduğunuz belgeniz kaydedildikten sonra aşağıda listelenecektir. Dilerseniz belgeyi indirip görüntüleyebilir ya da yüklenen belgenizi silip tekrardan yükleme işlemini gerçekleştirebilirsiniz.</p>
+
+<br />
+
+<h3 style="text-align: center; text-align: center; font-style: italic; font-weight: bold">Kaydedilen Belgeniz</h3>
+<hr />
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr style="font-size:17px">
+                <th scope="col" style="font-weight:bold">Dosya Adı</th>
+                <th scope="col" style="font-weight:bold">Dosyayı İndir</th>
+                <th scope="col" style="font-weight:bold">Dosyayı Sil</th>
+                <th scope="col" style="font-weight:bold">Yükleme Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr tr style="font-size:17px">
+                    <td style=""><a href="@Url.Action("Goster", "Kullanici", new { dosya = @item.DosyaAdi })" target="_blank">@item.DosyaAdi</a></td>
+                    <td style=""><a href="@Url.Action("Download", "StajDefteri", new { file = @item.DosyaAdi })"><button type="submit" class="btn btn-info">İndir</button></a></td>
+                    @using (Html.BeginForm())
+                    {
+                        <td style=""><a onclick="DosyayıSil(@item.ID)"><button type="button" class="btn btn-danger ">Sil</button></a></td>
+                    }
+                    <td style="">@item.Tarih</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script>
+
+    $(document).ready(function () {
+        Dropzone.autoDiscover = false;
+        $('#myDropzone1').dropzone({
+            //parameter name value
+            paramName: "files",
+            //clickable div id
+            clickable: '#previews',
+            //preview files container Id
+            previewsContainer: "#previewFiles",
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            parallelUploads: 100,
+            maxFiles: 1,
+            //  url:"/", // url here to save file
+            maxFilesize: 100,//max file size in MB,
+            addRemoveLinks: true,
+            dictResponseError: 'Server not Configured',
+            acceptedFiles: ".pdf",// use this to restrict file type
+            dictInvalidFileType: "Sisteme pdf ve rar uzantılı dosya yükleyebilirsiniz!",
+            dictCancelUpload: "Dosya Yükleniyor.",
+            dictMaxFilesExceeded: "Sisteme en fazla 1 adet dosya yükleyebilirsiniz!",
+            init: function () {
+                var self = this;
+                // config
+                self.options.addRemoveLinks = true;
+                self.options.dictRemoveFile = "Dosyayı Sil";
+
+                //New file added
+                self.on("addedfile", function (file) {
+                    console.log('new file added ', file);
+                    $('.dz-success-mark').hide();
+                    $('.dz-error-mark').hide();
+                });
+                // Send file starts
+                self.on("sending", function (file) {
+                    console.log('upload started', file);
+                    $('.meter').show();
+                });
+
+                // File upload Progress
+                self.on("totaluploadprogress", function (progress) {
+                    console.log("progress ", progress);
+                    $('.roller').width(progress + '%');
+                });
+
+                self.on("queuecomplete", function (progress) {
+                    $('.meter').delay(999).slideUp(999);
+                });
+
+                // On removing file
+                self.on("removedfile", function (file) {
+                    console.log(file);
+                });
+
+                $('#Submit').on("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Validate form here if needed
+
+                    if (self.getQueuedFiles().length > 0) {
+                        self.processQueue();
+                        setInterval(() => window.location.reload(false), 500);
+                        //alert("İşlem Başarılı");
+
+                    } else {
+                        self.uploadFiles([]);
+                        $('#myDropzone1').submit();
+                        alert("Bir Hata Oluştu Dosya Yüklenemedi. Lütfen Tekrar Deneyiniz!");
+
+                    }
+
+                });
+
+                self.on("successmultiple", function () {
+                    //    /*if (self == !null)*/ {
+                    /* Alert("İşlem başarılı");*/
+                    alert("Dosya Yükleme İşleminiz Başarıyla Gerçekleştirilmiştir.");
+
+                });
+            }
+        });
+
+
+    })
+
+</script>
+
+

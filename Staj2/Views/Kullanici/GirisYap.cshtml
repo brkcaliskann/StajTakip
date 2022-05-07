@@ -1,0 +1,84 @@
+﻿@model Staj2.Models.Kullanici
+@{
+    ViewBag.Title = "UyeOl";
+    Layout = null;
+}
+@using System.Web;
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <link href="~/Content/CSS/Login.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+<body class="body">
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+    <div style="">
+        @*<div class="baslik">
+                <h1 class="baslik-yazi">Bilecik Şeyh Edebali Üniversitesi Staj Takip Sistemi Kullanıcı Giriş Ekranı</h1>
+                <br />
+                <h3 class="baslik-yazi"><a style="color:red;font-weight:bold;font-style:italic">Not:</a>Kullanıcı Adı Bilgisi Okul Numaranızdır.</h3>
+            </div>*@
+
+        <div class="login-form-block">
+
+            <form action="/Kullanici/GirisYap" method="post">
+                <div class="logo">
+                    <img src="~/Content/Logo/BSEU-Logo.png" alt="logo">
+                </div>
+
+                <h4 style="text-align:center">Staj 2 Programına Ulaşmak İçin</h4>
+                <h4 style="text-align:center">Lütfen Giriş Yapınız</h4>
+                <p>@ViewBag.Uyari</p>
+                <hr />
+
+                <div class="container">
+                    <label><b><i>Kullanıcı Adınız</i></b></label>
+                    <input type="text" placeholder="Kullanıcı Adı" name="Numara" required>
+
+                    <label><b><i>Şifreniz</i></b></label>
+                    <input type="password" placeholder="Şifre" name="Parola" required>
+
+                    <button type="submit">Giriş Yap</button>
+                    @*@Html.CheckBoxFor(m => m.BeniHatirla)
+            <label class="form-check-label">Beni Hatırla</label>*@
+                    <div style="text-align: right; font-weight: bold; font-style: italic;">
+                        <a href="/Kullanici/SifremiUnuttum"><b>Şifremi Unuttum/Güncelle</b></a><br />
+                    </div>
+                </div>
+
+                <div class="container" style="background-color: #f1f1f1;text-align:right;font-weight:bold;font-style:italic;height:100px;margin-top:10px">
+
+                    <div style="text-align:center;margin-top:25px">
+                        <a href="/Kullanici/UyeOl"><b style="color: #F44336">Henüz üye değil misiniz? Üye olmak için tıklayın.</b></a>
+                    </div>
+
+                    <div style="text-align:center;margin-top:-3px">
+                        <br />
+                        <strong>@DateTime.Now.Year-</strong>
+                        <strong>Bilecik Şeyh Edebali Üniversitesi</strong>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            $(window).on("load", function () {
+                $(".loader-wrapper").fadeOut("slow");
+            });
+        </script>
+    </div>
+</body>
+
+
+

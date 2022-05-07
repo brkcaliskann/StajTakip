@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Staj2.Models.Kullanici>
+@{
+    ViewBag.Title = "StajBasvuruListesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{var i = 1;}
+
+<script>
+    function Sil(id) {
+
+        if (confirm('Kayıt Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Admin/Sil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Kayıt Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<h1 style="font-weight: bold; font-style: italic;text-align:center">Staj 2 Dönemi Tamamlananların Listesi</h1>
+<hr />
+
+<p style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Staj başvurusu onaylanan öğrencilere ait listeye aşağıdan ulaşabilirsiniz. </p>
+
+<form action="/Admin/BasvurusuTamamlananlarınListesi" method="post">
+
+    <input type="date" name="baslangicTarih" style="margin-left:350px;width:150px" />
+
+    <input type="date" name="bitisTarih" style="width:150px" />
+
+    <button type='submit' class='btn btn-success'>Seçili Kayıtları Getir</button><br /><br />
+
+    <h3 style="text-align:center;color:red;font-weight:bold;font-style:italic">@ViewBag.Mesaj</h3>
+
+    <h3 style="text-align:center;color:red;font-weight:bold;font-style:italic;color:green">@ViewBag.Mesaj1</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr style="color:red">
+                <th scope="col" style="font-weight: bold; font-style: italic">Sıra No</th>
+                <th scope="col" style="font-weight:bold;font-style:italic"> Adı</th>
+                <th scope="col" style="font-weight:bold;font-style:italic"> Soyadı</th>
+                <th scope="col" style="font-weight:bold;font-style:italic"> Numarası</th>
+                <th scope="col" style="font-weight:bold;font-style:italic"> Adres</th>
+                <th scope="col" style="font-weight:bold;font-style:italic"> E-Posta</th>
+                <th scope="col" style="font-weight:bold;font-style:italic"> Tel No</th>
+                <th scope="col" style="font-weight:bold;font-style:italic">Başvuruyu Değerlendiren</th>
+                <th scope="col" style="font-weight:bold;font-style:italic">Değerlendirilme Tarihi</th>
+                <th scope="col" style="font-weight:bold;font-style:italic">Staj Durumu</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null)
+            {
+
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="">@i</td>
+                        <td style="">@item.Adi</td>
+                        <td style="">@item.Soyadi</td>
+                        <td style="">@item.Numara</td>
+                        <td style="">@item.Adres</td>
+                        <td style="">@item.Mail</td>
+                        <td style="">@item.TelefonNo</td>
+                        <td style="">@item.BasvuruyuDegerlendiren</td>
+                        <td style="">@item.BasvuruDegerlendirilmeTarihi.ToString().TrimEnd('0', ':')</td>
+                        <td style="">@item.StajDurum.StajDurumAdi</td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+</form>
+<br />
+<br />
+
+<p style="font-weight: bold; font-style: italic;text-align:center"><a style=" background-color: red; color: white">Açıklama:</a> Seçili tarihler arasında excel çıktısı alabilirsiniz. </p>
+
+
+<form action="/Admin/BasvurusuTamamlananlarListe">
+
+    <input type="date" name="baslangicTarih" style="margin-left:350px;width:150px" />
+
+    <input type="date" name="bitisTarih" style="width:150px" />
+
+    <button type='submit' class='btn btn-success'>Seçili Tarihler Arası Excel Çıktısı Al</button><br /><br />
+
+</form>
+<br />
+<br />
+

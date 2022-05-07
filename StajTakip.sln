@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StajTakip", "StajTakip\StajTakip.csproj", "{823D4D7B-1176-4EA8-8F6B-5A5FBFDCDD53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staj1", "Staj1\Staj1.csproj", "{04183295-47FD-4D6D-8995-E22F1251F3E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staj2", "Staj2\Staj2.csproj", "{042C1815-1BCE-49E7-9353-C1619314F62C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{823D4D7B-1176-4EA8-8F6B-5A5FBFDCDD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823D4D7B-1176-4EA8-8F6B-5A5FBFDCDD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823D4D7B-1176-4EA8-8F6B-5A5FBFDCDD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823D4D7B-1176-4EA8-8F6B-5A5FBFDCDD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04183295-47FD-4D6D-8995-E22F1251F3E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04183295-47FD-4D6D-8995-E22F1251F3E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04183295-47FD-4D6D-8995-E22F1251F3E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04183295-47FD-4D6D-8995-E22F1251F3E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{042C1815-1BCE-49E7-9353-C1619314F62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{042C1815-1BCE-49E7-9353-C1619314F62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{042C1815-1BCE-49E7-9353-C1619314F62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{042C1815-1BCE-49E7-9353-C1619314F62C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F08EF1ED-BAB8-4E57-B403-97F2312DE6DD}
+	EndGlobalSection
+EndGlobal

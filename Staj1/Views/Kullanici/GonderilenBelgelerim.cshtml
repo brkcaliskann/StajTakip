@@ -1,0 +1,175 @@
+﻿@model IEnumerable<Staj1.Models.GeriGonderilenBelgeler>
+
+@{
+    ViewBag.Title = "Belgelerim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Staj1.Models;
+
+
+<script>
+    function GeriGonderilenBelgeSil(id) {
+
+        if (confirm('Başvuru Belgesi Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Kullanici/GeriGonderilenBelgeSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Başvuru Belgesi Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+
+    //$(document).ready(function () {
+    //    $('.nav-toggle').click(function () {
+    //        var collapse_content_selector = $(this).attr('href');
+    //        var toggle_switch = $(this);
+    //        $(collapse_content_selector).toggle(function () {
+    //            if ($(this).css('display') == 'none') {
+    //                toggle_switch.html('Göster');
+    //            } else {
+    //                toggle_switch.html('Gizle');
+    //            }
+    //        });
+    //    });
+
+    //});
+
+    jQuery(function ($) {
+        //ANA SAYFA DEVAMINI OKU
+        $('.devamyazi').on('click', function () {
+
+
+            if ($(this).hasClass('aktif')) {
+                $('.caticerik').css({ 'height': '30px' });
+                $(this).css({ 'color': 'blue' });
+                $(this).css({ 'font-weight': 'bold' });
+                $(this).css({ 'font-style': 'italic' });
+                $(this).removeClass('aktif');
+                $(this).text('Devamını Göster');
+            } else {
+                $('.caticerik').css({ 'height': 'auto' });
+                $(this).css({ 'color': 'red' });
+                $(this).css({ 'font-weight': 'bold' });
+                $(this).css({ 'font-style': 'italic' });
+                $(this).addClass('aktif');
+                $(this).text('Gizle');
+            }
+
+        });
+        //ANA SAYFA DEVAMINI OKU
+    });
+
+</script>
+
+<style type="text/css">
+    #text {
+        display: none;
+    }
+
+    .caticerik {
+        height: 30px;
+        overflow: hidden;
+    }
+
+    .devamyazi {
+        cursor: pointer;
+    }
+
+</style>
+
+<h3 style="font-style: italic; font-weight: bold; text-align: center">Geri Gönderilen Belgelerim</h3>
+<hr />
+
+<p style="font-style: italic; font-weight: bold; color: #2E7D32; text-align: center; font-size:19px">@ViewBag.Mesaj</p>
+<p style="font-style: italic; font-weight: bold; color: #F44336; text-align: center; font-size: 19px ">@ViewBag.Mesaj1</p>
+<br />
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <table class="table table-striped">
+        <thead>
+
+            <tr style="font-weight:bold;font-size:18px">
+                <th scope="col">Yüklenilen Belge Adı</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.BelgeAdi != "")
+                    {
+                        <td><a href="@Url.Action("Goster", "Kullanici", new { dosya = @item.BelgeAdi })" target="_blank">@item.BelgeAdi</a></td>
+                    }
+                    else
+                    {
+                        <td><a style="color:black">@item.BelgeAdi</a></td>
+                    }
+                    <td style="color:black">
+
+                        @*<div class="caticerik">
+                                <br>
+                                <span id="text">
+                                    @item.Aciklama
+                                </span>
+                            </div>
+
+                            <div class="devaminioku">
+                                <a href="#" id="toggle">Devamını Göster</a>
+                            </div>*@
+
+                        <div class="caticerik">
+                            @item.Aciklama
+                        </div>
+
+                        
+                        <div class="devaminioku">
+                            @if (item.Aciklama.Length > 70)
+                            {
+                                <div class="devamyazi"><a style="font-weight:bold;font-style:italic;color:blue" href="#">Devamını Göster</a></div>
+                            }
+                        </div>
+
+
+                    </td>
+                    <td style="color:black">@item.Tarih</td>
+                    <td><a onclick="GeriGonderilenBelgeSil(@item.ID)"><button type="submit" class="btn btn-danger">Sil</button></a></td>
+                    @if (item.BelgeAdi != "")
+                    {
+                        <td><a href="@Url.Action("Download", "Admin", new { file = @item.BelgeAdi })"><button type="submit" class="btn btn-info">İndir</button></a></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

@@ -1,0 +1,189 @@
+﻿@model Staj1.Controllers.AdminController.kullanicilModel
+
+@{
+    ViewBag.Title = "BasvuruDosyalari";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="text-align:center;font-style:italic;font-weight:bold">Basvuru Dosyalari</h2>
+<hr />
+
+
+<script>
+    const { options } = require("dropzone");
+
+
+    function StajBasvuruBelgesiSil(id) {
+
+        if (confirm('Dosya Silinsin mi?')) {
+            var model = {
+                "id": id
+            };
+            $.ajax({
+                url: '/admin/StajBasvuruBelgesiSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    location.reload();
+                }
+            });
+
+        }
+    }
+
+    function StajBasvuruBelgesiGetir() {
+        var userID = $('#KullaniciID').val();
+
+        var model = {
+            "id": userID
+        };
+
+        $.ajax({
+            url: '/admin/StajBasvuruBelgesiGetir',
+            type: "POST",
+            data: model,
+            success: function (result) {
+                //  alert(result);
+
+                var tableResult = "  <table class='table table-striped'><thead><tr><th scope='col'>Yüklenilen Belge Adı</th><th scope='col'>Belgeyi Görüntüle</th><th scope='col'>Belgeyi Sil</th><th scope='col'>Tarih</th> </tr></thead><tbody>";
+
+                for (i = 0; i < result.length; ++i) {
+
+                    tableResult += "<tr>";
+                    tableResult += "<td style = ''><a href='/StajBasvuruBelgeleri/Staj1/" + result[i].BelgeAdi + "' goster>" + result[i].BelgeAdi + "</a></td>";
+                    tableResult += "<td style = ''><a href='/StajBasvuruBelgeleri/Staj1/" + result[i].BelgeAdi + "' download><button type='button' class='btn btn-info'>İndir</button></a></td>";
+                    tableResult += "<td style = ''><a href='#' onClick='StajBasvuruBelgesiSil(" + result[i].ID + ")' ><button type='button' class='btn btn-danger'>Sil</button></a></td>";
+                    tableResult += "<td style = ''>" + ToJavaScriptDate(result[i].Tarih)  + "</td>";
+
+                    tableResult += "</tr>";
+                }
+
+
+                tableResult += "</tbody></table>";
+                $("#BelgeGetir").html(tableResult);
+            }
+        });
+    }
+
+    function ToJavaScriptDate(jsonDate) {
+        var fullDate = new Date(parseInt(jsonDate.substr(6)));
+        var twoDigitMonth = (fullDate.getMonth() + 1) + ""; if (twoDigitMonth.length == 1) twoDigitMonth = "0" + twoDigitMonth;
+
+        var twoDigitDate = fullDate.getDate() + ""; if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+        var currentDate = twoDigitDate + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+
+        return currentDate;
+    }
+
+</script>
+
+<script>
+
+    //$(document).ready(function () {
+    //    //Kullanıcı seçilince
+    //    $('#KullaniciID').change(function () {
+    //        $('#StajDurumID').empty();
+    //        $.ajax({
+    //            type: 'POST',
+    //            url: '/Admin/BasvuruDurumu', // Basvuru Durumu metoduna git
+    //            dataType: 'json',
+    //            data: { id: $('#KullaniciID').val() },
+    //            // Kullanici id'ye göre veri getir.
+
+    //            success: function (basvuru) {
+    //                $.each(basvuru, function (i, basvuruadi) {
+    //                    $('#StajDurumID').append('<option value="' + basvuruadi.Value + '">' + basvuruadi.Text + '</option>');
+    //                });
+
+    //            },
+    //            error: function (ex) {
+    //                alert('Veri bulunamadı.');
+    //            }
+    //        });
+    //        return false;
+    //    })
+    //});
+
+        $(document).ready(function () {
+        //Kullanıcı seçilince
+        $('#KullaniciID').change(function () {
+            $('#StajDurumID').empty();
+            $.ajax({
+                type: 'POST',
+                url: '/Admin/BasvuruDurumu', // Basvuru Durumu metoduna git
+                dataType: 'json',
+                data: { id: $('#KullaniciID').val() },
+                // Kullanici id'ye göre veri getir.
+
+                success: function (basvuru) {
+                    $.each(basvuru, function (i, basvuruadi) {
+                        $('#StajDurumID').append('<label value="' + basvuruadi.Value + '">' + "Öğrenci Başvuru Durumu :" + " " + basvuruadi.Text + '</label>');
+                    });
+
+                },
+                error: function (ex) {
+                    alert('Veri bulunamadı.');
+                }
+            });
+            return false;
+        })
+    });
+
+</script>
+
+<form action="/Admin/BasvuruDosyalari" method="post">
+
+    <h2 style="color: red; text-align: center; font-weight: bold; font-style: italic">@ViewBag.Uyari</h2>
+
+    <h3 style="text-align: center;font-style:italic"><a style="font-style: italic; font-weight: bold; background-color:red;color:white">Açıklama:</a> Lütfen öğrencilerin göndermiş olduğu staj başvuru belgelerine ulaşmak için açılır listede bulunan öğrencinin adını ve soyadını seçiniz.</h3><br />
+
+    <select style="font-size: 25px; width: 538px;text-align:center;margin-left:300px" onchange="StajBasvuruBelgesiGetir()" name="KullaniciID" id="KullaniciID">
+        <option>Lütfen Öğrenci Adını Ve Soyadını Seçiniz</option>
+        @foreach (var item in Model.kullanici)
+        {
+            <option style="font-size:25px" value="@item.KullaniciID">@item.Adi @item.Soyadi</option>
+        }
+
+    </select>
+    <div id="BelgeGetir"></div>
+
+    <div style="text-align: center">
+        <label style="font-style: italic ; font-weight:bold ; font-size:30px ;background-color:red;color:white" id="StajDurumID"></label>
+    </div>
+    <hr />
+
+    <h3 style="text-align: center; font-style: italic"><a style="font-style: italic; font-weight: bold; background-color:blue;color:white">Açıklama:</a> Staj başvuru belgelerinin onay işlemini öğrenci bilgisini seçtikten sonra aşağıdaki listeden gerçekleştirebilirsiniz. </h3><br />
+    <h3 style="text-align: center; font-style: italic"><a style="font-style: italic; font-weight: bold; background-color:darkorange;color:white">Not:</a> Hatalı, yanlış ya da eksik gönderilen evraklar düzeltilip tekrar gönderildikten sonra sistem üzerinden onay durumunu tekrardan güncelleyebilirsiniz. </h3><br />
+
+
+    <select style="font-size: 25px; width: 538px ;text-align:center;margin-left:300px" name="stajDurumID" id="stajDurumID">
+        <option>Başvuru Durumu</option>
+        @foreach (var item in ViewBag.liste)
+        {
+            <option style="font-size:25px" value="@item.StajDurumID">@item.StajDurumAdi</option>
+        }
+    </select><br /><br />
+
+    <!--<select style="font-size: 25px; width: 538px; font-weight: bold; font-style: italic;text-align:center;margin-left:300px" name="StajDurumID" id="StajDurumID">
+
+        <option>Öğrenci Adını Seçiniz</option>-->
+    @*@foreach (var item in ViewBag.liste)
+        {
+            <option style="font-size:25px;font-weight:bold;font-style:italic" value="@item.StajDurumID">@item.StajDurumAdi</option>
+        }*@
+    <!--</select>-->
+
+    <a><button id="delete" type='submit' class='btn btn-success' style="margin-top:-136px;margin-left:850px">Onayla</button></a>
+
+</form>
+
+<h3 style="text-align: center; font-weight: bold; font-style: italic; color: #D81B60 ">@ViewBag.Onay</h3>
+
+
+
+
+
+
+
+
+

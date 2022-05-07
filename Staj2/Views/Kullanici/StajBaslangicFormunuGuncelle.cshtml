@@ -1,0 +1,53 @@
+﻿@model Staj2.Models.StajyerOgrenciBaslatma
+
+@{
+    ViewBag.Title = "StajBaslangicFormunuGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<p style="text-align:center;font-size:19px">Sistem üzerindeki kayıtlı bilgilerinizi güncelleyebilirsiniz.</p><br />
+
+<div style="border: 1px solid; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 350px; margin-left: 390px ">
+
+    <div style="margin-left: 115px;">
+        <img src="~/Content/Logo/Uye_Ol_BSEU-Logo.png" />
+    </div>
+
+    <p style="font-weight:bold;font-style:italic;background-color:green;color:white;text-align:center">@ViewBag.Mesaj</p>
+
+    <p style="text-align:center">Ad Soyad : <a style="color:green">@Model.Kullanici.Adi @Model.Kullanici.Soyadi</a></p> 
+
+    <form method="post" action="/Kullanici/StajBaslangicFormunuGuncelle">
+
+        <p style="text-align: center; font-weight: bold">TC Kimlik No : </p> @Html.TextBoxFor(model => model.Kullanici.Numara, new { @type = "text", @Name = "Numara", @id = "Numara", @style = "width: 300px; text-align: center; margin-left: 15px;color:green" })
+
+        <p style="text-align: center; font-weight: bold">Adresiniz : </p> <textarea type="text" rows="2" name="adres" id="adres" required="" style="width: 300px; margin-left: 15px;color:green">@Model.Kullanici.Adres </textarea>
+
+        <p style="text-align: center; font-weight: bold"><u>İş Yeri Adı </u></p> <textarea type="text" rows="3" name="isAdi" id="isAdi" required="" style="width: 300px; margin-left: 15px">@Model.IsyeriAdi </textarea>
+
+        <p style="text-align: center; font-weight: bold"><u>İş Yeri Adresi </u></p> <textarea type="text" rows="3" name="isAdresi" id="isAdresi" required="" style="width: 300px; margin-left: 15px">@Model.IsyeriAdresi </textarea>
+
+        <p style="text-align: center; font-weight: bold"><u>Staj Başlangıç Tarihi </u> </p> <a name="stajBaslangic" style="width: 300px; text-align: center; margin-left: 133px">@Model.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</a> @*@Html.TextBoxFor(model => model.StajBaslangicTarihi, "{0:yyyy-MM-dd}", new { @type = "date", @Name = "stajBaslangic", @id = "stajBaslangic", @style = "width: 300px; text-align: center; margin-left: 15px" })*@
+
+        <p style="text-align: center; font-weight: bold; margin-top: 10px"><u>Staj Bitiş Tarihi  </u></p> <a name="stajBitis" style="width: 300px; text-align: center; margin-left: 130px">@Model.StajBitisTarihi.ToString().TrimEnd('0', ':')</a> @*@Html.TextBoxFor(model => model.StajBitisTarihi, "{0:yyyy-MM-dd}", new { @type = "date", @Name = "stajBitis", @id = "stajBitis", @style = "width: 300px; text-align: center; margin-left: 15px" })*@
+
+        <p style="text-align: center; font-weight: bold; margin-top: 10px"><u>Cumartesi Çalışıyormusunuz? (Evet/Hayır) </u></p>
+
+        <select name="CumartesiCalisiyorMu" id="CumartesiCalisiyorMu" required="" style="width: 300px;; font-weight: bold; text-align: center; margin-left: 15px ">
+            <option>@Model.CumartesiCalisiyorMu</option>
+        </select>
+
+        <p style="text-align: center; margin-top: 10px"><u>Staj Türü(Adı):</u></p>
+
+        <select name="stajAdi" id="stajAdi" required="" style="width: 300px; font-weight: bold; text-align: center; margin-left: 15px">
+            <option>@Model.StajAdi.Adi</option>
+        </select>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-success" style="margin-left:139px">Kaydet</button>
+    </form>
+</div>
+<br />
+

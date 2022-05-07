@@ -1,0 +1,85 @@
+﻿@model Staj1.Models.Kullanici
+@{
+    ViewBag.Title = "ProfiliDegistir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<p style="margin-left:190px;font-size:21px">Sistem üzerindeki bilgileriniz aşağıda gösterilmiştir. Dilerseniz kayıtlı bilgilerinizi güncelleyebilirsiniz.</p>
+<br />
+
+<head>
+
+    <link href="~/Content/CSS/UyeOl.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Content/jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#telefon_numarasi').mask("0(999) 999 99 99");
+
+            $('#okul_numarasi').mask("99999999999");
+        });
+    </script>
+
+</head>
+
+<div style=" border-style: solid; border-width: 1px; width: 370px; margin-left: 340px; height: 1190px; background-color: #F5F5F5">
+    <form method="post" action="/Kullanici/ProfiliDegistir">
+        <div class="Uyeol-form-block">
+
+            <div class="logo" style="margin-left:119px">
+                <img src="~/Content/Logo/Uye_Ol_BSEU-Logo.png" />
+            </div>
+
+            <div class="UyeMisin-baslik">
+                <h2 class="UyeMisin-h2">Kayıtlı Bilgilerim</h2>
+            </div>
+
+            <div class="Mesaj-Kutu">
+                <h3 class="UyeMisin-h3">@ViewBag.Mesaj</h3>
+            </div>
+
+            <div class="container">
+                <label style="margin-left:15px">Ad</label><br />
+                @Html.TextBoxFor(model => model.Adi, new { @type = "text", @Name = "Ad", @id = "Ad", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">Soyad</label><br />
+                @Html.TextBoxFor(model => model.Soyadi, new { @type = "text", @Name = "Soyad", @id = "Soyad", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">Adres</label><br />
+                @Html.TextAreaFor(model => model.Adres, new { @type = "text", @Name = "Adres", @id = "Adres", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">E-Posta</label><br />
+                @Html.TextBoxFor(model => model.Mail, new { @type = "text", @Name = "Mail", @id = "Mail", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">Okul-Numara</label><br />
+                @Html.TextBoxFor(model => model.Numara, new { @type = "text", @Name = "Numara", @id = "okul_numarasi", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">Telefon No</label><br />
+                @Html.TextBoxFor(model => model.TelefonNo, new { @type = "text", @Name = "TelNo", @id = "telefon_numarasi", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">Sınıf</label><br />
+                @Html.TextBoxFor(model => model.Sinif, new { @type = "text", @Name = "Sinif", @id = "Sinif", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <label style="margin-left:15px">Parola</label><br />
+                @Html.TextBoxFor(model => model.Parola, new { @type = "text", @Name = "Parola", @id = "Parola", @style = "width: 300px; text-align: center; margin-left: 15px;color:black" })<br />
+
+                <button type="submit">Bilgilerimi Güncelle</button>
+                @*<div style="height:50px">
+                        <div class="UyeMisin-form-block">
+                            <p style="font-weight: bold; font-style: italic;"><a style="color:red">*</a> Sistemdeki üzerindeki kayıtlı bilgilerinizi güncelleyebilirsiniz</a></p>
+                        </div>
+                    </div>*@
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+<br />
+
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Staj1.Models.Staj>
+
+@{
+    ViewBag.Title = "TakipCizelgesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using StajTakip.Models;
+
+<h2 style="text-align:center;font-family:'Times New Roman';font-weight:bold;font-style:italic">STAJYER ÖĞRENCİ DEVAM TAKİP ÇİZELGESİ</h2>
+
+<div style="font-family:'Times New Roman'">
+
+    <div style="border:0.5px solid;padding-left:10px">
+        @if (User.Identity.IsAuthenticated)
+        {
+            StajTakipSistemiDB context = new StajTakipSistemiDB();
+            string numara = User.Identity.Name;
+            int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+            var ogrencinumara = context.Staj.Where(x => x.KullaniciID == kullaniciId).Select(x => x.Kullanici.Numara).FirstOrDefault();
+            var ogrenciAd = context.Staj.Where(x => x.KullaniciID == kullaniciId).Select(x => x.Kullanici.Adi).FirstOrDefault();
+            var ogrenciSoyad = context.Staj.Where(x => x.KullaniciID == kullaniciId).Select(x => x.Kullanici.Soyadi).FirstOrDefault();
+
+
+             <p style="font-weight:bold;font-style:italic">ÖĞRENCİNİN</p>
+             <p style="font-weight:bold;font-style:italic">Adı-Soyadı : @ogrenciAd @ogrenciSoyad</p>
+             <p style="font-weight:bold;font-style:italic">Numarası : @ogrencinumara</p>
+        }
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr style="font-family: 'Times New Roman'; font-weight: bold; font-style: italic ">
+                <th scope="col" style="text-align:center">Gün No</th>
+                <th scope="col" style="text-align:center">Tarih</th>
+                <th scope="col" style="text-align:center">Yapılan Çalışma</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center">
+                    <td style="font-style: italic">@item.GunNo</td>
+                    <td style="font-style: italic">@item.Tarih.Value.Date.ToString().TrimEnd('0', ':')</td>
+                    <td style="font-style: italic">@item.Baslik</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

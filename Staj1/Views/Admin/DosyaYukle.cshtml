@@ -1,0 +1,361 @@
+﻿@{
+    ViewBag.Title = "DosyaYukle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using System.Web;
+<head>
+    <script src="~/Content/js/jquery.blockUI.js"></script>
+    <script src="~/Content/js/jquery.form.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/jquery.MetaData.js"></script>
+    <script src="~/Content/js/jquery.MultiFile.js"></script>
+    <script src="~/Content/js/jquery.MultiFile.pack.js"></script>
+    <script src="~/Content/js/jquery.validate.js"></script>
+    <link href="~/Content/js/basic.css" rel="stylesheet" />
+    <link href="~/Content/js/dropzone.css" rel="stylesheet" />
+    <script src="~/Content/js/dropzone.min.js"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/js/dropzone.min.js"></script>
+</head>
+
+<script>
+
+    $(document).ready(function () {
+        Dropzone.autoDiscover = false;
+        $('#myDropzone').dropzone({
+            //parameter name value
+            paramName: "files",
+            //clickable div id
+            clickable: '#previews',
+            //preview files container Id
+            previewsContainer: "#previewFiles",
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            parallelUploads: 100,
+            maxFiles: 10,
+            //  url:"/", // url here to save file
+            maxFilesize: 100,//max file size in MB,
+            addRemoveLinks: true,
+            dictResponseError: 'Server not Configured',
+            acceptedFiles: ".pdf",// use this to restrict file type
+            dictInvalidFileType: "Sisteme sadece pdf türünde dosya yükleyebilirsiniz!",
+            dictCancelUpload: "Dosya Yükleniyor.",
+            dictMaxFilesExceeded: "Sisteme en fazla 5 adet dosya yükleyebilirsiniz!",
+            init: function () {
+                var self = this;
+                // config
+                self.options.addRemoveLinks = true;
+                self.options.dictRemoveFile = "Dosyayı Kaldır";
+
+                //New file added
+                self.on("addedfile", function (file) {
+                    console.log('new file added ', file);
+                    $('.dz-success-mark').hide();
+                    $('.dz-error-mark').hide();
+                });
+                // Send file starts
+                self.on("sending", function (file) {
+                    console.log('upload started', file);
+                    $('.meter').show();
+                });
+
+                // File upload Progress
+                self.on("totaluploadprogress", function (progress) {
+                    console.log("progress ", progress);
+                    $('.roller').width(progress + '%');
+                });
+
+                self.on("queuecomplete", function (progress) {
+                    $('.meter').delay(999).slideUp(999);
+                });
+
+                // On removing file
+                self.on("removedfile", function (file) {
+                    console.log(file);
+                });
+
+                $('#Submit').on("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Validate form here if needed
+
+                    if (self.getQueuedFiles().length > 0) {
+                        alert("Dosya Yükleme İşleminiz Başarıyla Gerçekleştirilmiştir.");
+                        self.processQueue();
+                        setInterval(() => window.location.reload(false), 500);
+                        /*alert("İşlem Başarılı");*/
+
+                    } else {
+                        self.uploadFiles([]);
+                        $('#myDropzone').submit();
+                        /*alert("Bir Hata Oluştu Dosya Yüklenemedi. Lütfen Tekrar Deneyiniz!");*/
+                        /*location.reload();*/
+
+                    }
+
+                });
+
+                self.on("successmultiple", function () {
+                    //    /*if (self == !null)*/ {
+                    /* Alert("İşlem başarılı");*/
+                    alert("Dosya Yükleme İşleminiz Başarıyla Gerçekleştirilmiştir.");
+
+                });
+            }
+        });
+
+
+    })
+
+    function GeriGonderilenBelgeSil(id) {
+
+        if (confirm('Dosya Silinsin mi?')) {
+            var model = {
+                "id": id
+            };
+            $.ajax({
+                url: '/admin/GeriGonderilenBelgeSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Gönderi silme işlemi başarıyla gerçekleşti");
+                    location.reload();
+                }
+            });
+
+        }
+    }
+
+
+    function GeriGonderilenBelgeGetir() {
+        var userID = $('#KullaniciID').val();
+
+        var model = {
+            "id": userID
+        };
+        $.ajax({
+            url: '/admin/GeriGonderilenBelgeGetir',
+            type: "POST",
+            data: model,
+            success: function (result) {
+                //alert(result);
+                var tableResult = "  <table class='table table-striped'><thead><tr><th scope='col' style = 'font-weight:bold; font-style:italic'>Yüklenilen Belge Adı</th></th><th scope='col' style = 'font-weight:bold; font-style:italic'>Açıklama</th></th><th scope='col' style = 'font-weight:bold; font-style:italic'>Tarih</th></th>    </tr></thead><tbody>";
+
+                for (i = 0; i < result.length; ++i) {
+
+                    tableResult += "<tr>";
+                    if (result[i].BelgeAdi == "") {
+                        tableResult += "<td>" + result[i].BelgeAdi + "</td>";
+                    }
+
+                    else {
+                        tableResult += "<td><a href='/GeriGonderilenEvraklar/Belgeler/" + result[i].BelgeAdi + "' goster>" + result[i].BelgeAdi + "</a></td>";
+                    }
+
+                    //tableResult += "<td style = 'font-style:italic'><div class='caticerik'>" + result[i].Aciklama + "</div>"
+
+                    //if (result[i].Aciklama.length > 70) {
+                    //    tableResult += "<div class = 'devamyazi'><a href = '#'> Goster </a></div>";
+
+                    //}
+
+                    tableResult += "<td>" + result[i].Aciklama + "</td>";
+
+                    tableResult += "<td>" + ToJavaScriptDate(result[i].Tarih) + "</td>";
+
+                    tableResult += "<td><a href='GeriGonderilenBelgeSil' onClick='GeriGonderilenBelgeSil(" + result[i].ID + ")' ><button type='button' class='btn btn-danger' value='Input'>Sil</button></a></td>";
+                    if (result[i].BelgeAdi != "") {
+                        tableResult += "<td><a href='/GeriGonderilenEvraklar/Belgeler/" + result[i].BelgeAdi + "' download><button type='button' class='btn btn-info' value='Input'>İndir</button></a></td>";
+                    }
+
+                    tableResult += "</tr>";
+
+                }
+                tableResult += "</tbody></table>";
+                $("#BelgeGetir").html(tableResult);
+            }
+        });
+    }
+
+    function ToJavaScriptDate(jsonDate) {
+
+        //var jsonDate = value;
+        //var value = new Date(parseInt(jsonDate.toString().substr(6)));
+
+        //if (value.getMonth == 0) {
+        //    var finalResult = value.getDate() + "/" + value.getMonth() + 1 + "/" +
+        //        value.getFullYear();
+        //}
+
+        //else {
+        //    var finalResult = value.getDate() + "/" + value.getMonth() + "/" +
+        //        value.getFullYear();
+        //}
+        //    return finalResult;
+
+        var fullDate = new Date(parseInt(jsonDate.substr(6)));
+        var twoDigitMonth = (fullDate.getMonth() + 1) + ""; if (twoDigitMonth.length == 1) twoDigitMonth = "0" + twoDigitMonth;
+
+        var twoDigitDate = fullDate.getDate() + ""; if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
+        var currentDate = twoDigitDate + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+
+        return currentDate;
+
+    }
+
+    $('.article').readmore({
+        speed: 75, //Açılma Hızı
+        collapsedHeight: 1, // 100px sonra yazının kesileceğini belirtir.
+        moreLink: '<a class="ac" href="#">devamı..</a>', // açma linki yazısı
+        lessLink: '<a class="kapat" href="#">kapat</a>', // kapatma linki yazısı
+    });
+
+</script>
+
+<style type="text/css">
+    .article {
+        margin: 0 auto;
+    }
+
+    .ac {
+        color: blue;
+    }
+
+    .kapat {
+        color: red;
+    }
+</style>
+
+<h2 style="text-align:center;font-style:italic;font-weight:bold">Başvuru Dosyası Yükle</h2>
+<hr />
+
+@*<p style="text-align: center"><a style="font-style: italic; font-weight: bold; background-color:red;color:white">Açıklama:</a> Lütfen yüklenilecek belgeleri aşağıdaki alana ekleyiniz ve kaydediniz.</p>*@
+
+<p style="text-align: center"><a style="font-weight: bold;color:red">Açıklama:</a> Lütfen öğrenciyi seçtikten sonra yüklenilecek belgeleri aşağıdaki alana ekleyiniz ve belge açıklamasını yazdıktan sonra kaydediniz.</p>
+<br />
+
+@*<h2 style="text-align: center; text-align: center; font-style: italic; font-weight: bold">Kaydedilen Belgeleriniz</h2>*@
+
+@model Staj1.Controllers.AdminController.kullanicilModel
+
+@*@if (User.Identity.IsAuthenticated == true)
+    {
+        StajTakip.Models.StajTakipSistemiDB context = new StajTakip.Models.StajTakipSistemiDB();
+
+        var listele = context.GeriGonderilenBelgeler.ToList();
+        //string numara = User.Identity.Name;
+        //int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+        //var listele = context.GeriGonderilenBelgeler.Where(x => x.KullaniciID == kullaniciId).ToList();
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Yüklenilen Belge Adı</th>
+                    <th scope="col">Belgeyi Görüntüle</th>
+                    <th scope="col">Belgeyi Sil</th>
+                    <th scope="col">Öğrenci Adı Soyadı</th>
+                    <th scope="col">Açıklama</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in listele)
+                {
+                    <tr>
+                        <td>@item.BelgeAdi</td>
+                        <td><button type="button" class="btn btn-info btn-lg"><a href="@Url.Action("Download", "Admin", new { file = @item.BelgeAdi })">İndir</a></button></td>
+                        @using (Html.BeginForm())
+                        {
+                            <td><button type="button" class="btn btn-danger btn-lg"><a href="@Url.Action("DosyaSil", "Admin", new { adi = @item.BelgeAdi })">Sil</a></button></td>
+                        }
+
+                        <td style="font-weight:bold;font-style:italic">@item.Kullanici.Adi @item.Kullanici.Soyadi</td>
+                        <td>@item.Aciklama</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }*@
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <form action="/Admin/DosyaYukle" method="post" name="myDropzone" id="myDropzone" enctype="multipart/form-data">
+
+        <div>
+            <div id="previews" class="dz-default dz-message box__input dropzone" style="background-color: #E1F5FE ">
+                <div style="text-align:center">
+                    <i class="fa fa-cloud-upload" style="font-size:43px;position:relative;top:4px;"></i> <span style="margin-left:20px"><p style="font-size:25px">Lütfen yüklemek istediğiniz dosyaları seçiniz ya da bu alana sürükleyiniz.</p></span>
+                </div>
+            </div>
+
+            <br /><br /><p style="text-align: center"><a style="font-weight: bold;color:red">Açıklama:</a> Her bir öğrenciye ait geri göndermiş olduğunuz bildirimleri ilgili öğrenciyi seçtikten sonra görüntüleyebilirsiniz.</p>
+
+            @*<h3 style="text-align: center; font-style: italic "><a style="font-style: italic; font-weight: bold; background-color: #388E3C; color: white">Açıklama:</a>Her bir öğrenciye ait geri göndermiş olduğunuz belgeleri ilgili öğrenciyi seçtikten sonra görüntüleyebilirsiniz.</h3>*@
+
+            <div class="form-horizontal">
+                <hr />
+                <div class="form-group">
+                    <div class="col-lg-10">
+
+                        <select style="font-size: 25px; width: 538px; font-weight: bold; font-style: italic;text-align:center;margin-left:300px" onchange="GeriGonderilenBelgeGetir()" name="KullaniciID" id="KullaniciID">
+                            <option value="">Evrak Gönderilecek Öğrenciyi Seçiniz</option>
+
+                            @foreach (var item in Model.kullanici)
+                            {
+                                <option style="font-size:25px;font-weight:bold;font-style:italic" value="@item.KullaniciID">@item.Adi @item.Soyadi</option>
+                            }
+                        </select><br /><br />
+
+                        <div id="BelgeGetir" style="margin-left:200px"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br />
+            <div style="text-align: center; border: 1px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 420px; margin-left: 355px; background-color: #FFEBEE ">
+                <h1 style="font-style: italic; font-weight: bold">Yüklenen Belgeleriniz</h1>
+
+                <hr style="border-width:9px" />
+
+                <div id="previewFiles" style="margin-top: -35px"></div><hr style="border-width:9px" />
+
+                <p style="text-align:center;font-style:italic"><u>Mesaj Gönder </u></p>
+
+
+                <textarea class="form-control" cols="20" id="Description" name="aciklama" rows="2" style="font-size:17px"></textarea><br />
+
+                <div style="text-align:center">
+                    <input type="submit" id="Submit" name="Submit" value="Kaydet" />
+                    <br /><br />
+
+                </div>
+            </div>
+        </div>
+        <br /><br />
+    </form>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

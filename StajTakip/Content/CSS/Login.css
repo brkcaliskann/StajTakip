@@ -1,0 +1,151 @@
+﻿.body {
+    /*    background-image: url('../Logo/Bilecik-Şeyh-Edebali-Üniversitesi.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;*/
+    background-image: linear-gradient(270deg,#fff, #00796B);
+}
+
+.login-form-block {
+    margin: 50px auto;
+    width: 300px;
+    background-color:white
+}
+
+h4 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    color: #00796B;
+}
+
+p {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    background-color:red;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #00796B;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+.logo {
+    text-align: center;
+    margin: 16px 0 10px 0;
+}
+
+.baslik {
+    background-color: white;
+    text-align: center;
+    width: 1500px;
+    margin-left: 200px;
+}
+
+.baslik-yazi{
+    font-weight:bold;
+    font-style:italic;
+}
+
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border: 4px solid #00695C;
+    animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    background-color: #fff;
+    animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(180deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loader-inner {
+    0% {
+        height: 0%;
+    }
+
+    25% {
+        height: 0%;
+    }
+
+    50% {
+        height: 100%;
+    }
+
+    75% {
+        height: 100%;
+    }
+
+    100% {
+        height: 0%;
+    }
+}
+
+
+
+

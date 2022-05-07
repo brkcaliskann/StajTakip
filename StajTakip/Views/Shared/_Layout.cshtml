@@ -1,0 +1,167 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+    <link href="/Content/style.css" rel="stylesheet" type="text/css">
+    <link href="/Content/styles/lunar.css" rel="stylesheet" type="text/css" id="colorstyle">
+    <link href="/Content/custom.css" rel="stylesheet" type="text/css">
+    @*<link href="/Content/demo/demo.css" rel="stylesheet" type="text/css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Content/jquery-3.1.1.min.js"></script>
+    @*<script src="~/Content/demo/demo.js"></script>*@
+    <script src="~/Content/demo/SmoothScroll.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+    <div id="wrapper">
+        <!-- HEADER START -->
+        <section id="header">
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/Home/Index">
+                            <img src="~/Content/Logo/logomuz.jpg" height="46">
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="">
+                                <a href="/Home/Index">ANA SAYFA</a>
+                            </li>
+
+                            <li class="">
+                                <a href="/Home/BolumumuzHakkında">BÖLÜMÜMÜZ HAKKINDA</a>
+                            </li>
+
+                            @*<li class="">
+                                <a href="/Home/Index">İLETİŞİM</a>
+                            </li>*@
+
+                            <li class="dropdown-submenu">
+                                <a href="/Home/Index">GİRİŞ YAP</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://localhost:44374/Kullanici/GirisYap">STAJ 1 İÇİN GİRİŞ YAP</a></li>
+                                    <li><a href="https://localhost:44312/Kullanici/GirisYap">STAJ 2 İÇİN GİRİŞ YAP</a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+
+
+
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+        </section>
+
+
+        <section id="title" class="container-fluid wow fadeInDown">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <h3>Bilecik Şeyh Edebali Üniversitesi</h3>
+
+                    </div>
+                    <div class="col-xs-9 text-right breadcrumbs">
+
+
+
+                        <ul class="list-inline list-unstyled">
+                            @*<li><a href="/Kullanici/GirisYap"><span style="font-family:'Segoe Print';font-size:17px;font-weight:bold">GİRİŞ YAP</span></a></li>
+                            <li>/</li>*@
+                            @*<li><a href="/Kullanici/UyeOl"><span style="font-family:'Segoe Print';font-size:17px;font-weight:bold">ÜYE OL</span></a></li>*@
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog-list" class="container">
+            <div class="row">
+                @RenderBody()
+
+                @*left column end
+                right column start*@
+                <div id="sidebar" class="col-md-3">
+
+
+                </div>
+                @*right column end*@
+
+            </div>
+        </section>
+
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="/Content/Logo/logomuz.jpg" alt="Bilecik Şeyh Edebali Üniversitesi" height="45">
+                        <p>Üniversitemiz ve bölümümüz hakkında daha fazla ve detaylı bilgi için sosyal medya hesaplarımızı takip edebilirsiniz.</p>
+                        <br>
+                        <ul class="list-unstyled list-inline social-icons">
+                            <li><a href="https://www.facebook.com/bilecik.bilgmuh.7" class="facebook"><i class="fa fa-facebook facebook"></i></a></li>
+                            <li><a href="https://twitter.com/bseubilgmuh" class="twitter"><i class="fa fa-twitter twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/bilecikbm/" class="instagram"><i class="fa fa-instagram instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/channel/UCgwHzd1y10sgOwtpf1zMckQ/featured" class="youtube"><i class="fa fa-youtube youtube"></i></a></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h4>İLETİŞİM</h4>
+                            <p><i class="fa fa-map-pin fa-fw"></i> Bilecik Şeyh Edebali Üniversitesi, Mühendislik Fakültesi, Bilgisayar Mühendisliği Bölümü, Gülümbe Yerleşkesi, C-Blok, Kat 3, 11210 Gülümbe/BİLECİK</p>
+                            <p><i class="fa fa-phone fa-fw"></i>  0228 214 11 11(BŞEÜ Santral)</p>
+                            <p><i class="fa fa-envelope fa-fw"></i> <a href="mailto:bm_bb@bilecik.edu.tr">bm_bb@bilecik.edu.tr</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div id="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.7488226261676!2d29.96746401538915!3d40.192402979391936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cc75e791df68d1%3A0x8152c406c8498209!2sBilecik%20%C5%9Eeyh%20Edebali%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1633873989503!5m2!1str!2str" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <hr>
+                        <div class="col-md-12 text-center bottom">
+                            <p>Copyright &copy; @DateTime.Now.Year Burak Çalışkan. Tüm Hakları Saklıdır.</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+    </div>
+
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+
+</body>
+</html>
+
