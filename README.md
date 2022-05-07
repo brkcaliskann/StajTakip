@@ -26,6 +26,8 @@ Kullanıcılar ana sayfa üzerinden istenilen staj dönemine, bağlantı linkini
 
 ![resim5](https://user-images.githubusercontent.com/85406429/167255394-1a5cefe8-8057-423e-8ded-5d48e6456860.png) ![resim7](https://user-images.githubusercontent.com/85406429/167255341-be09087f-2981-493b-abf9-40321da82976.png)
 
+Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen özellikler dahilinde tasarlanmıştır.
+
 
 
 
