@@ -24,10 +24,7 @@ Kullanıcılar ana sayfa üzerinden istenilen staj dönemine, bağlantı linkini
 </div>
 </br>
 
-![resim5](https://user-images.githubusercontent.com/85406429/167254911-8ba08a5d-0c7c-4998-a2dd-c70c31e2ae17.png)
-
-![resim8](https://user-images.githubusercontent.com/85406429/167255083-183d391e-cb25-4765-a883-918a518e2863.png)         ![resim9](https://user-images.githubusercontent.com/85406429/167255141-89c79729-a06d-4949-a231-8978fd2aad70.png)
-
+![resim5](https://user-images.githubusercontent.com/85406429/167255199-bda8e817-bf41-4de5-8888-4ea8e65b44c4.png)
 
 
 
