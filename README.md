@@ -26,7 +26,30 @@ Kullanıcılar ana sayfa üzerinden istenilen staj dönemine, bağlantı linkini
 
 ![resim5](https://user-images.githubusercontent.com/85406429/167255394-1a5cefe8-8057-423e-8ded-5d48e6456860.png) ![resim7](https://user-images.githubusercontent.com/85406429/167255341-be09087f-2981-493b-abf9-40321da82976.png)
 
-Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen özellikler dahilinde tasarlanmıştır.
+<div align="justify">
+  
+Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen özellikleri içermektedir.<br>
+
+1. ***Kullanıcı Paneli*** <br>
+   İlgili staj dönemine ait numara ve şifre bilgisi ile giriş yapan öğrenciler kullanıcı paneli üzerinden; 
+   
+   - Üyelik bilgilerini güncelleme,
+   - Şifremi unuttum seçeneği ile sistemde kayıtlı mail adresine gönderilen aktivasyon kodu ile şifre resetleme,
+   - Staj başvurusunda bulunma<em>(staj belgelerini sistem üzerinden yükleme)</em>,
+   - Staj başlangıç formunu doldurma<em>(iş yeri hakkında ve staj başlangıç ve bitiş tarihleri ile ilgili gerekli bilgileri doldurma. Sistem kullanıcının hafta sonu çalışma seçeneğine bağlı staj başlangıç ve bitiş tarihleri arasında sene içerisindeki belirtilmiş resmi tatiller haricindeki toplam çalışma günü hesaplanmaktadır.)</em>,
+   - Yapılan başvuruları görüntüleme,
+   - Başvuruları değerlendiren yetkili kişi tarafından yapılan geri bildirimlere <em>(dosya gönderim veya mesajlara)</em> ulaşabilme, 
+   - Sistem üzerinde yer alan <em>"CKEDITOR"</em> aracılığıyla gün gün olacak şekilde staj defterini hazırlayabilme<em>(ilgili staj günlükleri oluşturulduktan sonra  güncelleme ve silme işlemlerini de gerçekleştirebilme)</em>,
+   - Oluşturulan staj defterini pdf olarak kaydedilme,
+   - Tamamlanmış defterleri sistem üzerinden yükleyebilme,
+  
+   işlemlerini gerçekleştirilebilmektedir.
+
+ ![resim14](https://user-images.githubusercontent.com/85406429/167303345-2fed87a3-a2df-450c-bd86-bbea49dfecb7.png) ![Ekran görüntüsü 2022-05-08 181951](https://user-images.githubusercontent.com/85406429/167303363-763a783a-dab3-452f-8c8f-6f0a10005346.png)
+
+ 
+  
+</div>
 
 
 
