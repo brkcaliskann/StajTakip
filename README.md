@@ -51,6 +51,11 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
 
 ![resim25](https://user-images.githubusercontent.com/85406429/167303767-31d28002-06f6-44f2-b264-440dc25d4253.png) ![resim26](https://user-images.githubusercontent.com/85406429/167303787-5963d6e1-2635-4405-ac7f-e34ba99f2479.png)
 
+![Ekran görüntüsü 2022-05-08 182350](https://user-images.githubusercontent.com/85406429/167303834-3e9a586f-42cb-4056-a803-752781110f55.png)
+
+![Ekran görüntüsü 2022-05-08 182528](https://user-images.githubusercontent.com/85406429/167303874-34d45faf-342e-4eca-91d7-74f69659baa3.png) ![Ekran görüntüsü 2022-05-08 182618](https://user-images.githubusercontent.com/85406429/167303888-fe65d05d-962e-4cf3-a00f-6e20adc118e0.png)
+
+
 
   
 
