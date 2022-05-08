@@ -57,9 +57,16 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
 
 ![Ekran görüntüsü 2022-05-08 182528](https://user-images.githubusercontent.com/85406429/167303874-34d45faf-342e-4eca-91d7-74f69659baa3.png) ![Ekran görüntüsü 2022-05-08 182618](https://user-images.githubusercontent.com/85406429/167303888-fe65d05d-962e-4cf3-a00f-6e20adc118e0.png)
 
-
-
-  
+2. ***Admin Paneli*** <br>
+   İlgili staj dönemine ait mail ve şifre bilgisi ile giriş yapan yetkili kullanıcı admin panel üzerinden;
+    
+    - Staj başvurularını değerlendirme,
+    - Kullanıcılara geri bildirim <em>(dosya,mesaj veya ikiside)</em> yapılabilmesi,
+    - İlgili staj dönemlerini kullanıcılara açıp-kapatabilme kontrolü,
+    - Sene içerisindeki resmi tatil günlerini belirleme,
+    - Sistem üzerinden kayıtlı kullanıcıların yetkilerini düzenleyebilme,
+    - Staj başlangıç formlarının, başvurusu onaylananların ve staj dönemlerini başarıyla tamamlayan öğrencilerin listesine ulaşabilip excel formatında çıktı alabilme,
+    -
 
 
  
