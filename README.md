@@ -43,14 +43,16 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
    - Oluşturulan staj defterini pdf olarak kaydedilme,
    - Tamamlanmış defterleri sistem üzerinden yükleyebilme,
   
-   işlemlerini gerçekleştirilebilmektedir.
+   işlemlerini gerçekleştirilebilmektedir. Aşağıda kullanıcı paneline ait örnek görseller yer almaktadır.
 
 ![resim14](https://user-images.githubusercontent.com/85406429/167303454-d72df8be-7744-4c69-91b0-e979c053b984.png) ![Ekran görüntüsü 2022-05-08 181951](https://user-images.githubusercontent.com/85406429/167303413-21529ccf-e837-40c5-8df7-e2c799c821f6.png)
 
-![resim17](https://user-images.githubusercontent.com/85406429/167303692-dafd05a3-96b1-4f73-a271-b9dafe87166e.png) ![Ekran görüntüsü 2022-05-08 182224](https://user-images.githubusercontent.com/85406429/167303703-2f74aeb4-1898-454f-85b1-7d4e69bacc36.png)
-
+![resim17](https://user-images.githubusercontent.com/85406429/167303692-dafd05a3-96b1-4f73-a271-b9dafe87166e.png) ![Resim1](https://user-images.githubusercontent.com/85406429/167303978-256f3300-be10-4cef-8c98-e48c02ba72ce.png)
+   
 ![resim25](https://user-images.githubusercontent.com/85406429/167303767-31d28002-06f6-44f2-b264-440dc25d4253.png) ![resim26](https://user-images.githubusercontent.com/85406429/167303787-5963d6e1-2635-4405-ac7f-e34ba99f2479.png)
 
+![Ekran görüntüsü 2022-05-08 184650](https://user-images.githubusercontent.com/85406429/167304078-b8bdff5d-8c1b-4599-97da-3055ed8656d0.png)  
+  
 ![Ekran görüntüsü 2022-05-08 182350](https://user-images.githubusercontent.com/85406429/167303834-3e9a586f-42cb-4056-a803-752781110f55.png)
 
 ![Ekran görüntüsü 2022-05-08 182528](https://user-images.githubusercontent.com/85406429/167303874-34d45faf-342e-4eca-91d7-74f69659baa3.png) ![Ekran görüntüsü 2022-05-08 182618](https://user-images.githubusercontent.com/85406429/167303888-fe65d05d-962e-4cf3-a00f-6e20adc118e0.png)
