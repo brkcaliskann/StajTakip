@@ -31,7 +31,7 @@ Kullanıcılar ana sayfa üzerinden istenilen staj dönemine, bağlantı linkini
 Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen özellikleri içermektedir.<br>
 
 1. ***Kullanıcı Paneli*** <br>
-   İlgili staj dönemine ait numara ve şifre bilgisi ile giriş yapan öğrenciler kullanıcı paneli üzerinden; 
+   İlgili staj dönemine numara ve şifre bilgisi ile giriş yapan öğrenciler kullanıcı paneli üzerinden; 
    
    - Üyelik bilgilerini güncelleme,
    - Şifremi unuttum seçeneği ile sistemde kayıtlı mail adresine gönderilen aktivasyon kodu ile şifre resetleme,
@@ -58,15 +58,22 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
 ![Ekran görüntüsü 2022-05-08 182528](https://user-images.githubusercontent.com/85406429/167303874-34d45faf-342e-4eca-91d7-74f69659baa3.png) ![Ekran görüntüsü 2022-05-08 182618](https://user-images.githubusercontent.com/85406429/167303888-fe65d05d-962e-4cf3-a00f-6e20adc118e0.png)
 
 2. ***Admin Paneli*** <br>
-   İlgili staj dönemine ait mail ve şifre bilgisi ile giriş yapan yetkili kullanıcı admin panel üzerinden;
+   İlgili staj dönemine mail ve şifre bilgisi ile giriş yapan yetkili kullanıcı admin panel üzerinden;
     
     - Staj başvurularını değerlendirme,
     - Kullanıcılara geri bildirim <em>(dosya,mesaj veya ikiside)</em> yapılabilmesi,
     - İlgili staj dönemlerini kullanıcılara açıp-kapatabilme kontrolü,
     - Sene içerisindeki resmi tatil günlerini belirleme,
+    - Staj başvurusu onaylanan öğrencilerin staj süresince gün gün hazırlamış oldukları defterlerin kontrolünü gerçekleştirebildiği, 
     - Sistem üzerinden kayıtlı kullanıcıların yetkilerini düzenleyebilme,
     - Staj başlangıç formlarının, başvurusu onaylananların ve staj dönemlerini başarıyla tamamlayan öğrencilerin listesine ulaşabilip excel formatında çıktı alabilme,
-    -
+    - Sistem üzerinden öğrenciler tarafından gönderilmiş defterlere ulaşılabildiği,
+  
+   bölümlerden oluşmaktadır. Aşağıda admin panele ait örnek görseller yer almaktadır.
+  
+   ![resim35](https://user-images.githubusercontent.com/85406429/167371585-63f6a92e-9b11-4fb4-bf90-eeec8e899d03.png) ![resim36](https://user-images.githubusercontent.com/85406429/167372097-d201bf9c-b811-4040-993e-9ce74cb2561c.png)
+
+
 
 
  
