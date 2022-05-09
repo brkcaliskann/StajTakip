@@ -43,7 +43,7 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
    - Oluşturulan staj defterini pdf olarak kaydedilme,
    - Tamamlanmış defterleri sistem üzerinden yükleyebilme,
   
-   işlemlerini gerçekleştirilebilmektedir. Aşağıda kullanıcı paneline ait örnek görseller yer almaktadır.
+   işlemlerini gerçekleştirilebilmektedir. Aşağıda kullanıcı paneline ait örnek bazı görseller yer almaktadır.
 
 ![resim14](https://user-images.githubusercontent.com/85406429/167303454-d72df8be-7744-4c69-91b0-e979c053b984.png) ![Ekran görüntüsü 2022-05-08 181951](https://user-images.githubusercontent.com/85406429/167303413-21529ccf-e837-40c5-8df7-e2c799c821f6.png)
 
@@ -69,17 +69,50 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
     - Staj başlangıç formlarının, başvurusu onaylananların ve staj dönemlerini başarıyla tamamlayan öğrencilerin listesine ulaşabilip excel formatında çıktı alabilme,
     - Sistem üzerinden öğrenciler tarafından gönderilmiş defterlere ulaşılabildiği,
   
-   bölümlerden oluşmaktadır. Aşağıda admin panele ait örnek görseller yer almaktadır.
+   bölümlerden oluşmaktadır. Aşağıda admin panele ait örnek bazı görseller yer almaktadır.
   
    ![resim35](https://user-images.githubusercontent.com/85406429/167372578-09468407-2025-446c-9881-7e0f202f91a5.png) ![resim36](https://user-images.githubusercontent.com/85406429/167372097-d201bf9c-b811-4040-993e-9ce74cb2561c.png)
 
-
-
-
- 
+   ![resim37](https://user-images.githubusercontent.com/85406429/167372848-fd71631b-9e1b-4c76-a714-45aa63346edc.png)
   
+   ![resim38](https://user-images.githubusercontent.com/85406429/167373009-22d19513-0ea7-4b96-bd8f-bc25237014c8.png)
+   
+   ![resim40](https://user-images.githubusercontent.com/85406429/167373411-3476d8dd-f3d8-4d95-a635-f5d09900beac.png) ![resim41](https://user-images.githubusercontent.com/85406429/167373201-d92a5244-d16d-49e7-8704-2d8a085d5b48.png)
+
+   ![resim42](https://user-images.githubusercontent.com/85406429/167373726-53697c60-6f4e-4038-b9fc-b480275cf800.png) ![resim47](https://user-images.githubusercontent.com/85406429/167373749-4cd1a81c-b345-4bb9-a773-60874facf04f.png)
+  
+   ![resim43](https://user-images.githubusercontent.com/85406429/167373807-2d3e6010-5dea-41d2-92db-989bf70b10d8.png)  
 </div>
 
+## Kullanılan Teknolojiler
+- ASP.NET Framework 4.7.2 Mvc
+- Microsoft SQL Server Database
+- Entity Framework DBFİRST Yaklaşımı
+- Bootstrap
+- Jquery
+- Javascript
+- HTML
+- CSS
+
+## Öngereklilikler
+- Visual Studio 2019
+- Microsoft SQL Server Management Studio 2018
+- .NET Framework 4.7.2
+
+## Nasıl Çalıştırırım?
+
+<div align="justify">
+Projeye ait gerekli dosyaları bilgisayarınıza indirdikten sonra .sql uzantılı <em>"Staj1DB ve Staj2DB"</em> scriptlerini ayrı ayrı <em>"Execute"</em> ettikten sonra projeye ait gerekli veritabanları ve veritabanı tabloları SQL Server'ınız içerisinde oluşturulmuş olucaktır. Daha sonra indirmiş olduğunuz klasör içerisindeki sln uzantılı <em>"StajTakip.sln"</em> dosyasını açınız. Projeye ait solution üzerine sağ tıklayıp ilk önce <em>"Clean Solution"</em> seçeneğini ardından ise <em>"Rebuild Solution"</em>'ı seçerek projeyi derleyiniz. Derleme işlemlerini başarıyla tamamlandıktan sonra proje içerisinde oluşturulmuş diğer alt projeleride aynı anda çalıştırmak için <em>"Solution"</em> sekmesine sağ tıklayarak özellikler bölümünden aşağıda gösterildiği gibi <em>"Multiple Startup Project"</em> seçeneğine tıklayarak diğer projeleri de start iznini verdikten sonra projeyi çalıştırabilirsiniz. Projeler çalıştıktan <em>"Staj1 ve Staj2"</em> projelerini alt sekmeye alıp ana localhost olan <em>"Staj Takip"</em> <em>"https://localhost:44306"</em> tarayıcısı üzerinden devam edebilirsiniz. 
+</div>
+</br>  
+<div align="justify">
+<b><I>NOT:</I></b> Projeye ait <em>"Solution"</em> sekmesi üzerinden aşağıdaki gibi tüm alt projelerdeki localhostlar çalışıcak şekilde ayarlamaları gerçekleştirmeyi unutmayınız.
+  
+ ![Ekran görüntüsü 2022-05-09 121100](https://user-images.githubusercontent.com/85406429/167378682-2c29eb54-3f62-4b56-bcad-e7ddadc64b29.png)
+ 
+
+  
+</div>
 
 
 
