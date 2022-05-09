@@ -13,7 +13,7 @@ Proje bilgilendirme dökümanına ulaşmak için [tıklayınız](https://drive.g
 # Çalışma İçeriği
 
 <div align="justify">
-Geliştirilmiş olan sistem <em>"Bilecik Şeyh Edebali Üniversitesi Bilgisayar Mühendisliği Bölümünün"</em> staj yönergesi doğrultusunda tasarlanmış ve staj uygulanması, 1.  Zorunlu 20 iş günü olan <b><I>"Staj 1"</I></b> ve 2. Zorunlu 20 iş günü olan <b><I>"Staj 2"</I></b> dönemlerini kapsayarak toplam 40 iş günü olacak şekilde tasarlanmıştır. Bu doğrultuda sistem temel olarak 3 alt projeye bölünmüş ve tek web projesi çatısı altında birleştirilmiştir. Aşağıda program ilk çalıştırıldığı anda <em>"StajTakip"</em> adlı alt projesindeki <em>"https://localhost:44306"</em> tarayıcısında bulunan ana sayfaya ait ekran çıktısı görülmektedir.
+Geliştirilmiş olan sistem <em>"Bilecik Şeyh Edebali Üniversitesi Bilgisayar Mühendisliği Bölümünün"</em> staj yönergesi doğrultusunda tasarlanmış ve stajların uygulanması, 1.  Zorunlu 20 iş günü olan <b><I>"Staj 1"</I></b> ve 2. Zorunlu 20 iş günü olan <b><I>"Staj 2"</I></b> dönemlerini kapsayarak toplam 40 iş günü olacak şekilde tasarlanmıştır. Bu doğrultuda sistem temel olarak 3 alt projeye bölünmüş ve tek web projesi çatısı altında birleştirilmiştir. Aşağıda program ilk çalıştırıldığı anda <em>"StajTakip"</em> adlı alt projesindeki <em>"https://localhost:44306"</em> tarayıcısında bulunan ana sayfaya ait ekran çıktısı görülmektedir.
 </div>
 </br>
 
