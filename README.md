@@ -71,7 +71,7 @@ Geliştirilmiş olan <em>"Staj Takip Sistemi"</em> projesi aşağıda verilen ö
   
    bölümlerden oluşmaktadır. Aşağıda admin panele ait örnek görseller yer almaktadır.
   
-   ![resim35](https://user-images.githubusercontent.com/85406429/167372410-42edf4ad-157b-4e50-8d3d-8483caeecd63.png) ![resim36](https://user-images.githubusercontent.com/85406429/167372097-d201bf9c-b811-4040-993e-9ce74cb2561c.png)
+   ![resim35](https://user-images.githubusercontent.com/85406429/167372578-09468407-2025-446c-9881-7e0f202f91a5.png) ![resim36](https://user-images.githubusercontent.com/85406429/167372097-d201bf9c-b811-4040-993e-9ce74cb2561c.png)
 
 
 
